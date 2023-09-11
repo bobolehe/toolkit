@@ -1,8 +1,9 @@
 """百度翻译"""
+import datetime
+
 import execjs
 import time
 import requests
-
 
 js_str = r"""
 function n(t, e) {
@@ -63,8 +64,9 @@ function getSign(t) {
    return b(t)
 }
 """
-cookie = 'BAIDUID=18DF16B54514705624F8E574AA769831:FG=1; BAIDUID_BFESS=18DF16B54514705624F8E574AA769831:FG=1; Hm_lvt_64ecd82404c51e03dc91cb9e8c025574=1694141463; Hm_lpvt_64ecd82404c51e03dc91cb9e8c025574=1694141463; REALTIME_TRANS_SWITCH=1; FANYI_WORD_SWITCH=1; HISTORY_SWITCH=1; SOUND_SPD_SWITCH=1; SOUND_PREFER_SWITCH=1; ab_sr=1.0.1_MDE3NGRjZTJkYzUzOGY1OGZjZGU1Mzg2NGQ0NmQwMGFkNmMyYjg1ZjJjMmUzNjM0Y2U2ODk2ZWFmMTk4N2NhYTRmZjhhYTZkYzI3NWI1Njc1MzgwOWVlNGJlNDY3N2RjNmQwYjA1NjU4OGY2MWMyNjM0OTQyYTA3MjA2Y2RkNmYyN2U0ZWY0NGI4NjUxMDU3NWM5ZWIzMDg2NjZlYzE5NA=='
-token = 'd9a3bef87e7e727ddcfdf7925c4e8849'
+# 推荐使用Edge取请求cookie和token
+cookie = 'BAIDUID=9E285FD53469E27E6DD9674AB75A2395:FG=1; BAIDUID_BFESS=9E285FD53469E27E6DD9674AB75A2395:FG=1; Hm_lvt_64ecd82404c51e03dc91cb9e8c025574=1694403083; Hm_lpvt_64ecd82404c51e03dc91cb9e8c025574=1694403083; REALTIME_TRANS_SWITCH=1; FANYI_WORD_SWITCH=1; HISTORY_SWITCH=1; SOUND_SPD_SWITCH=1; SOUND_PREFER_SWITCH=1; ab_sr=1.0.1_NDFiNWUxMjFhODY0Zjk4MDZhZjczNmE3YmU5NTk1Mzk1YTEyYzc1ZmQxMDYyMTcyN2ExNTJhNTZjNWViZGI0MWQ2ZWI1NzBkOTc5OWIyNGIxZThjODYyYzIwZDM0NTg1ZTE4MDRhYWE4N2Y0YmE1NWZhMTQ5MjRiOGMxMGRlNmRhZDg3ZDk2NGExYmJkZWJhYzdkZDZkMGY2NGVhOTU4YQ=='
+token = '72033f85816042aee6c156496a022781'
 
 
 def translate(query, proxy, fro):
@@ -104,7 +106,11 @@ def translate(query, proxy, fro):
 
 # 获取单个代理
 def query_proxy():
-    return requests.get(url='http://192.168.90.12:5010/get/').json()['proxy']
+    while True:
+        p = requests.get(url='http://127.0.0.1:8888/success/get').json()['message']
+        if p:
+            return p
+        time.sleep(1)
 
 
 # 自动检测语言
@@ -118,8 +124,9 @@ def query_language(query):
 
 def run(p):
     # 初始代理池
+    h = query_proxy()
     proxy = {
-        'http': 'http://' + query_proxy()
+        'http': 'http://' + h,
     }
     i = True
     while i:
@@ -127,11 +134,19 @@ def run(p):
             f = query_language(p)
             a = translate(p, proxy=proxy, fro=f)
         except Exception as e:
-            proxy['http'] = 'http://' + query_proxy()
+            pass
+            h = query_proxy()
+            proxy = {
+                'http': 'http://' + h
+            }
         else:
             return a
 
 
 if __name__ == "__main__":
     print(run(p='root privileges via buffer overflow in xlock command on SGI IRIX systems.')['data'])
-    # query_language('123')
+
+    # s_time = time.time()
+    # time.sleep(2)
+    # e_time = time.time()
+    # print(e_time-s_time)
