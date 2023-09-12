@@ -74,7 +74,7 @@ function getToken() {
 cookie = 'BAIDUID=787AB1F60FFF2CCFD902B7DAE9BC10DE:FG=1; BAIDUID_BFESS=787AB1F60FFF2CCFD902B7DAE9BC10DE:FG=1; Hm_lvt_64ecd82404c51e03dc91cb9e8c025574=1694508010; Hm_lpvt_64ecd82404c51e03dc91cb9e8c025574=1694508010; REALTIME_TRANS_SWITCH=1; FANYI_WORD_SWITCH=1; HISTORY_SWITCH=1; SOUND_SPD_SWITCH=1; SOUND_PREFER_SWITCH=1; ab_sr=1.0.1_N2VmZjdiYmZhZWMyMDZjNGQ1NmY3MWNjMTRkYzMxMzE5OGU2ZTIxY2NlMGJiZGE1MzI1Y2QxMDJhYzMwNmIxY2ZhOWFhZDhjY2U2ZDdmNTRlOWM5NzM0NDg3MDI3NDU3NDVkMTIzZDI5OGNhODI3NGI0MDNkMmRjNzg4YTc1Y2UyMjY5ZDg2MThiOTVhNzdlNGExNjVhYmQzM2RmNGYwYQ=='
 token = '0aade8ccdd0ab939be32722abd258efa'
 global proxy_http
-proxy_http = ""
+proxy_http = ''
 
 
 def translate(query, fro):
@@ -104,11 +104,8 @@ def translate(query, fro):
         'domain': 'common',
         'ts': int(time.time() * 1000),
     }
-    proxy = {
-        'http': 'http://' + proxy_http
-    }
-    response = requests.post(url, headers=headers, data=data, proxies=proxy).json()
-    # print(response)
+
+    response = requests.post(url, headers=headers, data=data).json()
     try:
         return {'error': 101, 'data': response["trans_result"]["data"][0]["dst"]}
     except KeyError:
@@ -118,12 +115,12 @@ def translate(query, fro):
 # 获取单个代理
 def query_proxy():
     while True:
-        # p = requests.get(url='http://127.0.0.1:8888/success/get').json()['message']
-        p = requests.get(url='http://192.168.90.12:5010/get/').json()['proxy']
+        p = requests.get(url='http://127.0.0.1:8888/success/get').json()['message']
+        # p = requests.get(url='http://192.168.90.12:5010/get/').json()['proxy']
         if p:
             global proxy_http
             proxy_http = f'http://{p}'
-            return p
+            return
 
 
 # 自动检测语言
@@ -150,35 +147,38 @@ def run(p):
             return a
 
 
-def get_token(proxy):
+def get_token():
     c = ''
     t = ''
-    with sync_playwright() as p:
-        try:
-            # 默认情况下开启无头模式，也就是不显示浏览器窗口
-            browser = p.chromium.launch(headless=True)
-            # browser = p.chromium.launch(channel="msedge", headless=False, proxy={"server": proxy})
-            context = browser.new_context()
-            page = context.new_page()
-            page.goto('https://fanyi.baidu.com/#auth/zh/')
-            page.locator("#desktop-guide-wrapper a").nth(1).click()
-            page.locator("#baidu_translate_input").click()
-            page.locator("#baidu_translate_input").fill("mange")
-            for i in context.cookies():
-                c += f"{i['name']}={i['value']}; "
-            t = page.evaluate('window.common.token')
-        except Exception as e:
-            query_proxy()
-        return c[0:-3], t
+    if not proxy_http:
+        query_proxy()
+    while True:
+        with sync_playwright() as p:
+            try:
+                # 默认情况下开启无头模式，也就是不显示浏览器窗口
+                # browser = p.chromium.launch(headless=True, channel='msedge')
+                browser = p.firefox.launch(headless=True)
+                # browser = p.chromium.launch(headless=False, proxy={"server": proxy_http})
+                context = browser.new_context()
+                page = context.new_page()
+                page.set_default_timeout(10000)
+                page.goto('https://fanyi.baidu.com/#auth/zh/')
+                page.locator("#baidu_translate_input").fill("mange")
+                for i in context.cookies():
+                    c += f"{i['name']}={i['value']}; "
+                t = page.evaluate('window.common.token')
+            except Exception as e:
+                query_proxy()
+            else:
+                return c[0:-3], t
 
 
 if __name__ == "__main__":
     # 获取代理
-    # query_proxy()
-    print(proxy_http)
+    query_proxy()
     # 获取cookie和token
-    # cookie, token = get_token(proxy_http)
-    # print(f"{cookie}", token)
+    cookie, token = get_token()
+    print(f"{cookie}", token)
     # 测试翻译功能
     for i in range(3):
         s_time = time.time()
