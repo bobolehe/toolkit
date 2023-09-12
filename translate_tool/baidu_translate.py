@@ -4,6 +4,7 @@ import datetime
 import execjs
 import time
 import requests
+from playwright.sync_api import sync_playwright
 
 js_str = r"""
 function n(t, e) {
@@ -63,13 +64,20 @@ var r = "320305.131321201"
 function getSign(t) {
    return b(t)
 }
+
+function getToken() {
+    return (window.common.token)
+}
+
 """
 # 推荐使用Edge取请求cookie和token
-cookie = 'BAIDUID=9E285FD53469E27E6DD9674AB75A2395:FG=1; BAIDUID_BFESS=9E285FD53469E27E6DD9674AB75A2395:FG=1; Hm_lvt_64ecd82404c51e03dc91cb9e8c025574=1694403083; Hm_lpvt_64ecd82404c51e03dc91cb9e8c025574=1694403083; REALTIME_TRANS_SWITCH=1; FANYI_WORD_SWITCH=1; HISTORY_SWITCH=1; SOUND_SPD_SWITCH=1; SOUND_PREFER_SWITCH=1; ab_sr=1.0.1_NDFiNWUxMjFhODY0Zjk4MDZhZjczNmE3YmU5NTk1Mzk1YTEyYzc1ZmQxMDYyMTcyN2ExNTJhNTZjNWViZGI0MWQ2ZWI1NzBkOTc5OWIyNGIxZThjODYyYzIwZDM0NTg1ZTE4MDRhYWE4N2Y0YmE1NWZhMTQ5MjRiOGMxMGRlNmRhZDg3ZDk2NGExYmJkZWJhYzdkZDZkMGY2NGVhOTU4YQ=='
-token = '72033f85816042aee6c156496a022781'
+cookie = 'BAIDUID=787AB1F60FFF2CCFD902B7DAE9BC10DE:FG=1; BAIDUID_BFESS=787AB1F60FFF2CCFD902B7DAE9BC10DE:FG=1; Hm_lvt_64ecd82404c51e03dc91cb9e8c025574=1694508010; Hm_lpvt_64ecd82404c51e03dc91cb9e8c025574=1694508010; REALTIME_TRANS_SWITCH=1; FANYI_WORD_SWITCH=1; HISTORY_SWITCH=1; SOUND_SPD_SWITCH=1; SOUND_PREFER_SWITCH=1; ab_sr=1.0.1_N2VmZjdiYmZhZWMyMDZjNGQ1NmY3MWNjMTRkYzMxMzE5OGU2ZTIxY2NlMGJiZGE1MzI1Y2QxMDJhYzMwNmIxY2ZhOWFhZDhjY2U2ZDdmNTRlOWM5NzM0NDg3MDI3NDU3NDVkMTIzZDI5OGNhODI3NGI0MDNkMmRjNzg4YTc1Y2UyMjY5ZDg2MThiOTVhNzdlNGExNjVhYmQzM2RmNGYwYQ=='
+token = '0aade8ccdd0ab939be32722abd258efa'
+global proxy_http
+proxy_http = ""
 
 
-def translate(query, proxy, fro):
+def translate(query, fro):
     """
     query: 需要翻译字符串
     proxy: 代理
@@ -79,7 +87,7 @@ def translate(query, proxy, fro):
     context = execjs.compile(js_str)
     result = context.call("getSign", query)
 
-    url = 'https://fanyi.baidu.com/v2transapi'
+    url = 'https://fanyi.baidu.com/v2transapi?from=en&to=zh'
     # cookie与请求体中token相关联
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -96,6 +104,9 @@ def translate(query, proxy, fro):
         'domain': 'common',
         'ts': int(time.time() * 1000),
     }
+    proxy = {
+        'http': 'http://' + proxy_http
+    }
     response = requests.post(url, headers=headers, data=data, proxies=proxy).json()
     # print(response)
     try:
@@ -107,10 +118,12 @@ def translate(query, proxy, fro):
 # 获取单个代理
 def query_proxy():
     while True:
-        p = requests.get(url='http://127.0.0.1:8888/success/get').json()['message']
+        # p = requests.get(url='http://127.0.0.1:8888/success/get').json()['message']
+        p = requests.get(url='http://192.168.90.12:5010/get/').json()['proxy']
         if p:
+            global proxy_http
+            proxy_http = f'http://{p}'
             return p
-        time.sleep(1)
 
 
 # 自动检测语言
@@ -123,30 +136,57 @@ def query_language(query):
 
 
 def run(p):
+    if not proxy_http:
+        query_proxy()
     # 初始代理池
-    h = query_proxy()
-    proxy = {
-        'http': 'http://' + h,
-    }
     i = True
     while i:
         try:
-            f = query_language(p)
-            a = translate(p, proxy=proxy, fro=f)
+            # f = query_language(p)
+            a = translate(p, fro='en')
         except Exception as e:
-            pass
-            h = query_proxy()
-            proxy = {
-                'http': 'http://' + h
-            }
+            query_proxy()
         else:
             return a
 
 
-if __name__ == "__main__":
-    print(run(p='root privileges via buffer overflow in xlock command on SGI IRIX systems.')['data'])
+def get_token(proxy):
+    c = ''
+    t = ''
+    with sync_playwright() as p:
+        try:
+            # 默认情况下开启无头模式，也就是不显示浏览器窗口
+            browser = p.chromium.launch(headless=True)
+            # browser = p.chromium.launch(channel="msedge", headless=False, proxy={"server": proxy})
+            context = browser.new_context()
+            page = context.new_page()
+            page.goto('https://fanyi.baidu.com/#auth/zh/')
+            page.locator("#desktop-guide-wrapper a").nth(1).click()
+            page.locator("#baidu_translate_input").click()
+            page.locator("#baidu_translate_input").fill("mange")
+            for i in context.cookies():
+                c += f"{i['name']}={i['value']}; "
+            t = page.evaluate('window.common.token')
+        except Exception as e:
+            query_proxy()
+        return c[0:-3], t
 
-    # s_time = time.time()
-    # time.sleep(2)
-    # e_time = time.time()
-    # print(e_time-s_time)
+
+if __name__ == "__main__":
+    # 获取代理
+    # query_proxy()
+    print(proxy_http)
+    # 获取cookie和token
+    # cookie, token = get_token(proxy_http)
+    # print(f"{cookie}", token)
+    # 测试翻译功能
+    for i in range(3):
+        s_time = time.time()
+        print(run(p='root privileges via buffer overflow')['data'])
+        e_time = time.time()
+        h_time = e_time - s_time
+        print(h_time)
+
+    # 执行js生成翻译字符串sign值
+    # context = execjs.compile(js_str)
+    # result = context.call("getToken")
