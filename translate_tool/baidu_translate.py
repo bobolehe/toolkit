@@ -1,5 +1,5 @@
 """
-百度翻译
+百度翻译 翻译速度受ip影响
 环境python3.10.*
 PyExecJS == 1.5.1
 playwright == 1.32.1
@@ -11,6 +11,7 @@ import time
 import requests
 from playwright.sync_api import sync_playwright
 
+# 翻译字符加密js代码
 js_str = r"""
 function n(t, e) {
     for (var n = 0; n < e.length - 2; n += 3) {
@@ -69,21 +70,20 @@ var r = "320305.131321201"
 function getSign(t) {
    return b(t)
 }
-
-function getToken() {
-    return (window.common.token)
-}
-
 """
 
 
 class BaiduTranslate:
-    def __init__(self):
-        self.cookie, self.token = self.get_token()
+    def __init__(self, auto):
+        self.proxy_http = self.query_proxy()
+        if auto:
+            self.cookie, self.token = self.get_token()
+        else:
+            self.cookie = 'BAIDUID=98EEF90A355645CA9AB89E1E3E0031CA:FG=1; BAIDUID_BFESS=98EEF90A355645CA9AB89E1E3E0031CA:FG=1; REALTIME_TRANS_SWITCH=1; FANYI_WORD_SWITCH=1; HISTORY_SWITCH=1; SOUND_SPD_SWITCH=1; SOUND_PREFER_SWITCH=1; Hm_lvt_64ecd82404c51e03dc91cb9e8c025574=1694569932; Hm_lpvt_64ecd82404c51e03dc91cb9e8c025574=1694569932; ab_sr=1.0.1_OGM1NjYzMTc3NTgyOGEwYmE2ODIyZDc3YjhjNzQwZjg5MDIyMTE3ZWM3N2E2ZTVlNzk0ZDFmYjRiMDVkZmY2NjJlOTUzYWJiNDE2YzAyZDNlMzNmZTUyNGI1MGE0YzI4OGFmOTc4OWM1OWQxMjM1YjIwOTJiNTAwMjMxMzFjOTRhZGZjMDUzNDc1MmFmNTk1MDhmNjJlMGE0ZmNhNDg2NA=='
+            self.token = '5feecf1da271b194f8ee16314e560c6a'
         print("初始化cookie、token成功")
         print(self.cookie)
         print(self.token)
-        self.proxy_http = self.query_proxy()
 
     # 翻译字段方法
     def translate(self, query, fro='en'):
@@ -99,6 +99,7 @@ class BaiduTranslate:
         url = 'https://fanyi.baidu.com/v2transapi?from=en&to=zh'
         # cookie与请求体中token相关联
         headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.81',
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
             'Cookie': self.cookie,
         }
@@ -114,10 +115,11 @@ class BaiduTranslate:
             'ts': int(time.time() * 1000),
         }
         proxy = {
-            'http': self.proxy_http
+            'http': 'http://' + self.proxy_http,
+            'https': 'https://' + self.proxy_http,
         }
-        response = requests.post(url, headers=headers, data=data, proxies=proxy).json()
-
+        response = requests.post(url, headers=headers, data=data).json()
+        # print(response)
         try:
             return {'error': 101, 'data': response["trans_result"]["data"][0]["dst"]}
         except KeyError:
@@ -132,8 +134,7 @@ class BaiduTranslate:
                 p = requests.get(url='http://127.0.0.1:8888/success/get').json()['message']
                 # p = requests.get(url='http://192.168.90.12:5010/get/').json()['proxy']
                 if p:
-                    proxy_http = f'http://{p}'
-                    return proxy_http
+                    return p
             except Exception as e:
                 print(f'获取代理失败，失败原因{e}')
                 i -= 1
@@ -156,27 +157,29 @@ class BaiduTranslate:
             self.query_proxy()
         # 初始代理池
         i = 10
+        s_time = time.time()
         while i:
             try:
                 # 判断翻译字符串语种（暂时停用）
                 # f = query_language(p)
-                s_time = time.time()
                 a = self.translate(p, fro='en')
-                e_time = time.time()
             except Exception as e:
                 e = e
-                self.query_proxy()
-                i -= 1
+                self.proxy_http = self.query_proxy()
+                # i -= 1
             else:
+                e_time = time.time()
                 h_time = e_time - s_time
                 if h_time > 2:
-                    self.cookie, self.token = self.get_token()
+                    self.proxy_http = self.query_proxy()
+                #     self.cookie, self.token = self.get_token()
                 a['consuming'] = h_time
                 return a
 
     # 获取cookies以及token
     @staticmethod
     def get_token():
+        # 默认尝试获取5次
         c = ''
         t = ''
         i = 1
@@ -190,20 +193,22 @@ class BaiduTranslate:
                     # browser = p.webkit.launch(headless=False)
                     context = browser.new_context()
                     page = context.new_page()
-                    # page.set_default_timeout(10000)
                     page.goto('https://fanyi.baidu.com/#auth/zh/')
                     page.locator("#baidu_translate_input").fill("mange")
                     time.sleep(1)
+                    # 发送一次翻译请求,获取cookie
                     for i in context.cookies():
                         c += f"{i['name']}={i['value']}; "
+                    # js获取token
                     t = page.evaluate('window.common.token')
                 except Exception as e:
                     print(f"第{i}次获取cookie以及token失败，错误原因{e}")
+                    i += 1
                 else:
                     return c[0:-2], t
 
 
 if __name__ == "__main__":
-    translate = BaiduTranslate()
+    translate = BaiduTranslate(auto=False)
     for i in range(10):
         print(translate.run(p="TypeError: 'NoneType' object is not subscriptable"))
