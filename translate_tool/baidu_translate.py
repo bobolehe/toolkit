@@ -13,6 +13,13 @@ from playwright.sync_api import sync_playwright
 
 # 翻译字符加密js代码
 js_str = r"""
+function e(t, e) {
+    (null == e || e > t.length) && (e = t.length);
+    for (var n = 0, r = new Array(e); n < e; n++)
+        r[n] = t[n];
+    return r
+};
+
 function n(t, e) {
     for (var n = 0; n < e.length - 2; n += 3) {
         var r = e.charAt(n + 2);
@@ -21,7 +28,7 @@ function n(t, e) {
         t = "+" === e.charAt(n) ? t + r & 4294967295 : t ^ r
     }
     return t
-}
+};
 
 function b(t) {
         var o, i = t.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g);
@@ -69,12 +76,20 @@ var r = "320305.131321201"
 
 function getSign(t) {
    return b(t)
-}
+};
+
+function getToken() {
+    return (window.common.token)
+};
+
 """
 
 
 class BaiduTranslate:
     def __init__(self, auto):
+        """
+        auto: 指定是否需要自动获取cookie、token
+        """
         self.proxy_http = self.query_proxy()
         if auto:
             self.cookie, self.token = self.get_token()
@@ -119,9 +134,15 @@ class BaiduTranslate:
             'https': 'https://' + self.proxy_http,
         }
         response = requests.post(url, headers=headers, data=data).json()
-        # print(response)
+        data = ""
+        for k, d in enumerate(response["trans_result"]["data"]):
+            if d['dst'] and k == 0:
+                data += f"{d['dst']}"
+                continue
+            if d['dst']:
+                data += f"\n{d['dst']}"
         try:
-            return {'error': 101, 'data': response["trans_result"]["data"][0]["dst"]}
+            return {'error': 101, 'data': data}
         except KeyError:
             raise "ip失效"
 
@@ -131,8 +152,8 @@ class BaiduTranslate:
         i = 5
         while i:
             try:
-                p = requests.get(url='http://127.0.0.1:8888/success/get').json()['message']
-                # p = requests.get(url='http://192.168.90.12:5010/get/').json()['proxy']
+                # p = requests.get(url='http://127.0.0.1:8888/success/get').json()['message']
+                p = requests.get(url='http://192.168.90.12:5010/get/').json()['proxy']
                 if p:
                     return p
             except Exception as e:
@@ -161,8 +182,8 @@ class BaiduTranslate:
         while i:
             try:
                 # 判断翻译字符串语种（暂时停用）
-                # f = query_language(p)
-                a = self.translate(p, fro='en')
+                f = self.query_language(p)
+                a = self.translate(p, fro=f)
             except Exception as e:
                 e = e
                 self.proxy_http = self.query_proxy()
@@ -209,6 +230,6 @@ class BaiduTranslate:
 
 
 if __name__ == "__main__":
-    translate = BaiduTranslate(auto=False)
-    for i in range(10):
+    translate = BaiduTranslate(auto=True)
+    for i in range(2):
         print(translate.run(p="TypeError: 'NoneType' object is not subscriptable"))
