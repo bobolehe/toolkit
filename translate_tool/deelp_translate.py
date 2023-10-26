@@ -2,7 +2,7 @@ import execjs
 import time
 import requests
 import concurrent.futures
-
+import threading
 
 js_str = """
 function getSign() {
@@ -15,7 +15,6 @@ result = int(context.call('getSign')) + 2
 
 def translate(p, proxy=None):
     timestamp = int(time.time() * 1000)
-    print(result, timestamp)
     url = 'https://www2.deepl.com/jsonrpc?method=LMT_handle_jobs'
     data = {"jsonrpc": "2.0",
             "method": "LMT_handle_jobs",
@@ -54,13 +53,36 @@ def query_proxy():
     return proxy
 
 
+err = {}
+
+
 def run(p):
     # 创建线程池
-    executor = concurrent.futures.ThreadPoolExecutor(max_workers=10)
+    # executor = concurrent.futures.ThreadPoolExecutor(max_workers=10)
+    #
+    # # 提交任务到线程池
+    # futures = [executor.submit(th_run, p) for i in range(10)]
+    # # 关闭线程池，不再接受新的任务
+    # executor.shutdown()
+    #
+    # # 等待所有任务完成
+    # concurrent.futures.wait(futures)
 
-    # 提交任务到线程池
-    futures = [executor.submit(self.requests_proxy, proxy) for proxy in proxy_list]
+    while True:
+        try:
+            for i in range(10):
+                global result
+                result += i
+                response = threading.Thread(target=translate, args=(p,))
+                print(response)
+                if not response.get('error'):
+                    return response
+        except Exception as e:
+            e = e
+            pass
 
+
+def th_run(p):
     response = translate(p)
     while True:
         try:

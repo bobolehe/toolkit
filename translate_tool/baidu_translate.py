@@ -174,8 +174,8 @@ class BaiduTranslate:
         """
         p: 翻译字段
         """
-        if not self.proxy_http:
-            self.query_proxy()
+        # if not self.proxy_http:
+        #     self.query_proxy()
         # 初始代理池
         i = 10
         s_time = time.time()
@@ -186,7 +186,7 @@ class BaiduTranslate:
                 a = self.translate(p, fro=f)
             except Exception as e:
                 e = e
-                self.proxy_http = self.query_proxy()
+                # self.proxy_http = self.query_proxy()
                 # i -= 1
             else:
                 e_time = time.time()
@@ -230,6 +230,6 @@ class BaiduTranslate:
 
 
 if __name__ == "__main__":
-    translate = BaiduTranslate(auto=True)
+    translate = BaiduTranslate(auto=False)
     for i in range(2):
         print(translate.run(p="TypeError: 'NoneType' object is not subscriptable"))

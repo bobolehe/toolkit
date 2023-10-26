@@ -1,18 +1,22 @@
 import requests
-import json
+import threading
+import time
 
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
-                  'Chrome/88.0.4324.146 Safari/537.36'
-}
-url = 'https://fanyi.baidu.com/sug'
-query = input("请输入需要翻译的内容")
-data = {
-    'kw': query
-}
-response = requests.post(url=url, headers=headers, data=data)
-dic_obj = response.json()
-fileName = query + '.json'
-fp = open(fileName, 'w', encoding='utf-8')
-json.dump(dic_obj, fp=fp, ensure_ascii=False)
-print('over')
+
+def run():
+    while True:
+        print('thread running')
+        global stop_threads
+        if stop_threads:
+            break
+
+
+stop_threads = False
+t1 = threading.Thread(target=run)
+t1.start()
+time.sleep(1)
+stop_threads = True
+t1.join()
+print('thread killed')
+
+
