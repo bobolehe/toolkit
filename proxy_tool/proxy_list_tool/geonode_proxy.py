@@ -2,6 +2,7 @@ from playwright.sync_api import Playwright, sync_playwright, expect
 
 xpath_expression = '//*[@id="__next"]/div/div/div[1]/div/section/div/div[2]/div[3]/div/div[2]/div/div/div/table/tbody/tr/td/div'  # 替换为你的 XPath 表达式
 
+
 def obtain_proxy(playwright: Playwright, proxy_list):
     browser = playwright.chromium.launch(headless=True)
     context = browser.new_context()

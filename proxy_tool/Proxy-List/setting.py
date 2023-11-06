@@ -5,8 +5,6 @@ HTTP_LIST = [
     "https://openproxylist.xyz/http.txt",
     "https://proxyspace.pro/https.txt",
     "https://rootjazz.com/proxies/proxies.txt",
-    # "https://sheesh.rip/http.txt",
-    # "https://www.proxyscan.io/download?type=http"
 ]
 
 # 使用线程或进程
@@ -18,7 +16,7 @@ NUM_PROCESSES = 10
 
 # 备选获取代理目标
 you = [
-    "https://openproxy.space/list/http", "https://spys.me/proxy.txt",
+     "https://spys.me/proxy.txt",
 ]
 
 # 写入json文件配置
