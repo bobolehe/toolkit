@@ -522,7 +522,7 @@ class MysqlData:
         return err
 
     # 取指定字段满足条件的所有数据
-    def query_cve(self, table: str = None, field: str = None, price: str = None):
+    def query_field(self, table: str = None, field: str = None, price: str = None):
         sql = f'SELECT * FROM {table} WHERE {field} = "{price}";'
         try:
             self.curr.execute(sql)
@@ -562,7 +562,7 @@ class MysqlData:
         return result
 
     # 获取匹配满足条件指定字段数据
-    def query_field(self, table: str = None, r_field: str = None, field: str = None, price: str = None):
+    def query_field_r(self, table: str = None, r_field: str = None, field: str = None, price: str = None):
         """
         获取满足匹配条件指定字段数据
         :param table:

@@ -96,9 +96,9 @@ class BaiduTranslate:
         else:
             self.cookie = 'BAIDUID=98EEF90A355645CA9AB89E1E3E0031CA:FG=1; BAIDUID_BFESS=98EEF90A355645CA9AB89E1E3E0031CA:FG=1; REALTIME_TRANS_SWITCH=1; FANYI_WORD_SWITCH=1; HISTORY_SWITCH=1; SOUND_SPD_SWITCH=1; SOUND_PREFER_SWITCH=1; Hm_lvt_64ecd82404c51e03dc91cb9e8c025574=1694569932; Hm_lpvt_64ecd82404c51e03dc91cb9e8c025574=1694569932; ab_sr=1.0.1_OGM1NjYzMTc3NTgyOGEwYmE2ODIyZDc3YjhjNzQwZjg5MDIyMTE3ZWM3N2E2ZTVlNzk0ZDFmYjRiMDVkZmY2NjJlOTUzYWJiNDE2YzAyZDNlMzNmZTUyNGI1MGE0YzI4OGFmOTc4OWM1OWQxMjM1YjIwOTJiNTAwMjMxMzFjOTRhZGZjMDUzNDc1MmFmNTk1MDhmNjJlMGE0ZmNhNDg2NA=='
             self.token = '5feecf1da271b194f8ee16314e560c6a'
-        print("初始化cookie、token成功")
-        print(self.cookie)
-        print(self.token)
+        # print("初始化cookie、token成功")
+        # print(self.cookie)
+        # print(self.token)
 
     # 翻译字段方法
     def translate(self, query, fro='en'):
