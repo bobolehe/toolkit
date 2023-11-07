@@ -9,10 +9,8 @@ https://rootjazz.com/proxies/proxies.txt ok
 https://list.proxylistplus.com/Fresh-HTTP-Proxy-List-1 ok
 https://free-proxy-list.net/ ok
 https://proxy-list.org/english/index.php?p=1 ok 需要梯子
+http://free-proxy.cz/en/proxylist/country/all/http/ping/all/5 需要梯子暂时不做
 
-http://free-proxy.cz/en/proxylist/country/all/http/ping/all/5
-
-https://hidemy.io/en/proxy-list/?type=hs&start=128#list
 
 
 

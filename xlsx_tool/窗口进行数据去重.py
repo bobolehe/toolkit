@@ -41,8 +41,12 @@ def show_column_names(file_path):
 
 # 函数：执行数据去重，保存合并的数据
 def perform_data_deduplication(column_name, df):
+    # 创建一个布尔条件，检查指定列是否为空白值
     condition = df[column_name].isna()
+    # 筛选出包含空白值的行
     rows_with_empty_values = df[condition]
+    df = df[df[column_name].notna()]
+    # 对 '漏洞名称' 列进行去重
     df = df.drop_duplicates(subset=column_name)
     global merged_df
     merged_df = pd.concat([df, rows_with_empty_values])
@@ -55,7 +59,7 @@ def save_file():
         return
     if merged_df is None:
         return
-    merged_df.to_excel(file_path, index=False)
+    merged_df.to_excel(file_path, index=False, engine='openpyxl')
 
 
 # 添加标签和按钮
