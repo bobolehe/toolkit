@@ -23,7 +23,7 @@ def obtain_proxy(playwright: Playwright, proxy_list: list, urls: list):
             for tr in elements:
                 ip = tr.select('td')[0].text
                 port = tr.select('td')[1].text
-                proxy_list.append({'ip': ip, 'port': port})
+                proxy_list.append({'ip': ip, 'port': port,'source': 'kuaidaili'})
         except Exception as e:
             continue
 

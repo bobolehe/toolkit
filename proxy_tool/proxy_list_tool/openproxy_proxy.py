@@ -6,21 +6,28 @@ xpath_expression = '//*[@id="__next"]/div/div/div[1]/div/section/div/div[2]/div[
 def obtain_proxy(playwright: Playwright):
     browser = playwright.chromium.launch(headless=True)
     context = browser.new_context()
-    page = context.new_page()
-    page.goto("https://openproxy.space/list/http")
-    page.wait_for_selector('//*[@id="root"]/div[2]/div[1]/section[4]/textarea', state='attached')
-    proxy_text = page.query_selector('//*[@id="root"]/div[2]/div[1]/section[4]/textarea').inner_html()
-    proxy_list = proxy_text.split('\r\n')
-    proxy_list = [{'ip': proxy.split(':')[0], 'port': proxy.split(':')[1]} for proxy in proxy_list]
-    # ---------------------
-    context.close()
-    browser.close()
-    return proxy_list
+    try:
+        page = context.new_page()
+
+        page.goto("https://openproxy.space/list/http")
+        page.wait_for_selector('//*[@id="root"]/div[2]/div[1]/section[4]/textarea', state='attached')
+        proxy_text = page.query_selector('//*[@id="root"]/div[2]/div[1]/section[4]/textarea').inner_html()
+        proxy_list = proxy_text.split('\r\n')
+        proxy_list = [{'ip': proxy.split(':')[0], 'source': 'openproxy', 'port': proxy.split(':')[1]} for proxy in proxy_list]
+    except Exception as e:
+        pass
+    else:
+        # ---------------------
+        context.close()
+        browser.close()
+        return proxy_list
 
 
 def run():
     with sync_playwright() as playwright:
         proxy_list = obtain_proxy(playwright)
+    if not proxy_list:
+        proxy_list = []
     return proxy_list
 
 

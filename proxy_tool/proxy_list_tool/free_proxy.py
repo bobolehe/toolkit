@@ -11,7 +11,7 @@ def obtain_proxy(playwright: Playwright):
     for tr in tr_list:
         ip = tr.query_selector('td:nth-child(1)').inner_text()
         port = tr.query_selector('td:nth-child(2)').inner_text()
-        proxy_list.append({'ip': ip, 'port': port})
+        proxy_list.append({'ip': ip, 'port': port,'source': 'free_proxy'})
     context.close()
     browser.close()
     return proxy_list

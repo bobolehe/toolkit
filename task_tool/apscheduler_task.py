@@ -129,7 +129,7 @@ def my_job():
 if __name__ == '__main__':
     scheduled = create_scheduler(config)
     job_id = assignments(scheduled, my_job)
-    # # scheduled_tasks(scheduled, my_job, 1)
+    scheduled_tasks(scheduled, my_job, 1)
     try:
         while True:
             pass

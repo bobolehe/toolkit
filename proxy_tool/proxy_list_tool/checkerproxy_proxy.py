@@ -21,7 +21,7 @@ def obtain_proxy(playwright: Playwright, proxy_list: list, url: str):
     for tr in elements:
         first_td = tr.select('td')[0]
         ip, port = str(first_td.text).split(':')
-        proxy_list.append({'ip': ip, 'port': port})
+        proxy_list.append({'ip': ip, 'port': port, 'source': 'checkerproxy'})
     context.close()
     browser.close()
 
@@ -34,7 +34,10 @@ def run():
     url = f'https://checkerproxy.net/archive/{formatted_date}'
     proxy_list = []
     with sync_playwright() as playwright:
-        obtain_proxy(playwright, proxy_list, url)
+        try:
+            obtain_proxy(playwright, proxy_list, url)
+        except Exception as e:
+            pass
     return proxy_list
 
 

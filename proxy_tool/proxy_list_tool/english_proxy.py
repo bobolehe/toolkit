@@ -13,7 +13,7 @@ def obtain_proxy(playwright: Playwright, urls):
         for ul in ul_list:
             li = ul.query_selector('li')
             ip, port = li.inner_text().split(':')
-            proxy_list.append({'ip': ip, 'port': port})
+            proxy_list.append({'ip': ip, 'port': port, 'source': 'english'})
     context.close()
     browser.close()
     return proxy_list

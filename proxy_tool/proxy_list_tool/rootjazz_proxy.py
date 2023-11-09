@@ -13,7 +13,7 @@ def run():
         if ip_port[0] != '':
             ip = ip_port[0]
             port = ip_port[1]
-            ip_list.append({'ip': ip, 'port': port})
+            ip_list.append({'ip': ip, 'port': port,'source': 'rootjazz'})
 
     return ip_list
 

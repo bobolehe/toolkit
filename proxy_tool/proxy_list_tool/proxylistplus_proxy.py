@@ -5,18 +5,20 @@ from bs4 import BeautifulSoup
 def obtain_proxy(urls):
     proxy_list = []
     for url in urls:
-        r = requests.get(url)
+        try:
+            r = requests.get(url)
 
-        soup = BeautifulSoup(r.content, 'html.parser')
-        # 使用Beautiful Soup进行查找
+            soup = BeautifulSoup(r.content, 'html.parser')
+            # 使用Beautiful Soup进行查找
 
-        elements = soup.select('#page table')
-        elements = elements[2].select('tr')
-        for tr in elements[2:]:
-            ip = tr.select('td')[1].text
-            port = tr.select('td')[2].text
-            proxy_list.append({'ip': ip, 'port': port})
-    print(proxy_list)
+            elements = soup.select('#page table')
+            elements = elements[2].select('tr')
+            for tr in elements[2:]:
+                ip = tr.select('td')[1].text
+                port = tr.select('td')[2].text
+                proxy_list.append({'ip': ip, 'port': port,'source': 'proxylistplus'})
+        except Exception as e:
+            continue
     return proxy_list
 
 

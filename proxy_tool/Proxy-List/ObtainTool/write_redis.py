@@ -5,7 +5,6 @@ import setting
 from loggingtool import logger
 
 
-
 class RedisProxy:
 
     def __init__(self):

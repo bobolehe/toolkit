@@ -5,7 +5,7 @@ from app.common.http import success_api, fail_api
 from app.extensions import redis_store
 from flask import Blueprint
 
-login_bp = Blueprint('login', __name__, url_prefix='/')
+login_bp = Blueprint('proxy', __name__, url_prefix='/')
 
 
 @login_bp.route('/')
