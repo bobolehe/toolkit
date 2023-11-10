@@ -10,7 +10,7 @@ from proxy_tool.check_proxy.redis_tool import RedisProxy
 yes_proxy_list = []
 
 rds = RedisProxy()
-url = 'https://www.rapid7.com/db/modules/payload/windows/dllinject/bind_tcp_rc4/'
+url = 'https://www.rapid7.com/db/modules/post/linux/gather/enum_nagios_xi/'
 
 
 def check_proxy(proxy, url):
@@ -28,20 +28,20 @@ def check_proxy(proxy, url):
             yes_proxy_list.append(proxy)
             rds.w_h(data=yes_proxy_list, key=f'{url}')
     except requests.exceptions.RequestException as e:
-        log_data.error(f"Request error: {e}")
+        pass
+        # log_data.error(f"Request error: {e}")
 
 
 def run_check(url):
     proxy_list = rds.r_h('primary_proxy')
     log_data.info(f"需要验证数据量{len(proxy_list)}")
-
+    if rds.r_h(url):
+        rds.ret.delete(url)
     threads = []
     for ip in proxy_list:
         t = threading.Thread(target=check_proxy, args=(ip, url))
         threads.append(t)
         t.start()
-    for t in threads:
-        t.join()
 
 
 if __name__ == '__main__':
