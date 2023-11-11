@@ -1,4 +1,4 @@
-Common Toolkit v1.1
+Common Toolkit v1.2
 
 Available tools:
 
@@ -8,4 +8,4 @@ Convenient logging function
 
 Translation function
 
-- baidu_translate : Function completed (2023/9/12) Pause update
+Proxy platform

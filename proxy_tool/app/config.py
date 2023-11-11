@@ -16,8 +16,10 @@ class BaseConfig:
         "PASSWORD": "123456",
         "DB": 0,
     }
-
-    RIGHTS_KEY = '7ujm,lp-='
+    # 权限是否启用
+    RIGHTS = True  # 是否启用权限
+    RIGHTS_GET = 'key'  # 接收权限验证参数名
+    RIGHTS_KEY = '7ujm,lp-='  # 允许访问密钥
 
     SECRET_KEY = "pear-admin-flask"
     # JWT密钥

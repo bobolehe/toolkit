@@ -7,13 +7,13 @@ from proxy_tool.app.common.http import err_api
 from proxy_tool.app.config import BaseConfig
 
 
-def authorize(power: bool = True):
+def authorize(power: bool = BaseConfig.RIGHTS):
     def jwt_required_with_redirect(f):
         # 校验是否携带jwt
         @wraps(f)
         def decorated_function(*args, **kwargs):
             try:
-                key = request.args.get('key')
+                key = request.args.get(BaseConfig.RIGHTS_GET)
             except Exception as e:
                 return err_api(msg='权限不足')
             # 不需要验证权限，返回用户通过

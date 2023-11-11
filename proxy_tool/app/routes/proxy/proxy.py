@@ -10,10 +10,13 @@ from proxy_tool.app.common.http import success_api, fail_api, table_api, err_api
 from proxy_tool.app.extensions import redis_store
 from flask import Blueprint, request
 from proxy_tool.check_proxy.check_proxy import run_check
+from proxy_tool.check_proxy.crawler_proxy import query_proxy
 from task_tool import apscheduler_task
 from task_tool.apscheduler_task import scheduler
 
 proxy_bp = Blueprint('proxy', __name__, url_prefix='/proxy')
+
+query_task, query_task_err = apscheduler_task.assignments(scheduler, query_proxy)
 
 
 @proxy_bp.route('/')
