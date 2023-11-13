@@ -7,8 +7,6 @@ import sys
 
 
 def cleanup_function():
-    rds.ret.delete('primary_proxy')
-
     # 执行清理操作，例如关闭数据库连接、保存状态等
     for i in BaseConfig.VERIFY_URL:
         rds.ret.delete(i)
