@@ -124,7 +124,7 @@ def my_job2(args):
     :return:
     """
     # time.sleep(1)
-    print(datetime.now(pytz.utc))
+    # print(datetime.now(pytz.utc))
     # Simulate some work here
     for i in range(2):
         pass
@@ -141,6 +141,7 @@ if __name__ == '__main__':
 
     url = '123456'
     job_id, job_eve = assignments(scheduler, my_job2, parameters=[url])
-    print(job_eve)
+    print(job_id.id, job_eve)
     print(scheduler.get_jobs())
     scheduler.shutdown(wait=False)
+    print('等待关闭')
