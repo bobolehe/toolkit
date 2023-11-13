@@ -17,6 +17,8 @@
 Before starting the program, it is necessary to modify the parameters in the configuration file
 
 1. Permission related
+   1. Enabling permissions requires carrying permission parameters and parameter values when accessing the interface
+
 2. Storage related(redis)
 
 
@@ -49,4 +51,13 @@ flask run -p 8888 -h 0.0.0.0
 | address display     | Not Started |       |
 | Persistence Storage | Not Started |       |
 | optimize api        | Not Started |       |
+
+
+
+# Environmental Dependence
+
+```
+pip install -r requirements.txt
+playwright install  # 下载playwright需要依赖
+```
 
