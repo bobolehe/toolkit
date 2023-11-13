@@ -1,0 +1,343 @@
+2023-11-13 10:55:21,604 - INFO - Scheduler started
+2023-11-13 10:55:21,633 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-13 10:55:21,634 - INFO - Running job "query_proxy (trigger: date[2023-11-13 02:55:21 UTC], next run at: 2023-11-13 02:55:21 UTC)" (scheduled at 2023-11-13 02:55:21.605379+00:00)
+2023-11-13 10:55:21,635 - INFO - Removed job a09d0af1071b463695c89de22d09404d
+2023-11-13 10:55:21,646 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8888
+ * Running on http://192.168.60.57:8888
+2023-11-13 10:55:21,646 - INFO - [33mPress CTRL+C to quit[0m
+2023-11-13 10:55:29,551 - INFO - 存储redis成功
+2023-11-13 10:56:00,677 - INFO - Scheduler started
+2023-11-13 10:56:00,700 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-13 10:56:00,701 - INFO - Running job "query_proxy (trigger: date[2023-11-13 02:56:00 UTC], next run at: 2023-11-13 02:56:00 UTC)" (scheduled at 2023-11-13 02:56:00.677847+00:00)
+2023-11-13 10:56:00,702 - INFO - Removed job d3fdbbec46064b249968a3c3661ecb34
+2023-11-13 10:56:00,714 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8888
+ * Running on http://192.168.60.57:8888
+2023-11-13 10:56:00,714 - INFO - [33mPress CTRL+C to quit[0m
+2023-11-13 10:56:05,208 - INFO - 存储redis成功
+2023-11-13 10:56:57,218 - INFO - 存储redis成功
+2023-11-13 10:56:59,225 - INFO - 存储redis成功
+2023-11-13 10:57:06,529 - INFO - 存储redis成功
+2023-11-13 10:57:08,348 - INFO - 存储redis成功
+2023-11-13 10:58:39,704 - INFO - 存储redis成功
+2023-11-13 10:59:41,489 - INFO - 存储redis成功
+2023-11-13 10:59:43,626 - INFO - 存储redis成功
+2023-11-13 10:59:47,701 - INFO - 存储redis成功
+2023-11-13 10:59:51,318 - INFO - 存储redis成功
+2023-11-13 11:00:12,996 - INFO - 存储redis成功
+2023-11-13 11:00:14,126 - INFO - 存储redis成功
+2023-11-13 11:00:16,567 - INFO - 存储redis成功
+2023-11-13 11:03:18,688 - INFO - Scheduler started
+2023-11-13 11:03:18,722 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-13 11:03:18,724 - INFO - Running job "query_proxy (trigger: date[2023-11-13 03:03:18 UTC], next run at: 2023-11-13 03:03:18 UTC)" (scheduled at 2023-11-13 03:03:18.689858+00:00)
+2023-11-13 11:03:18,724 - INFO - Removed job 69ee58c9d8a04187951f75e8b43a9675
+2023-11-13 11:03:18,735 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8888
+ * Running on http://192.168.60.57:8888
+2023-11-13 11:03:18,736 - INFO - [33mPress CTRL+C to quit[0m
+2023-11-13 11:03:21,078 - INFO - 存储redis成功
+2023-11-13 11:03:50,834 - INFO - 存储redis成功
+2023-11-13 11:03:52,896 - ERROR - Future exception was never retrieved
+future: <Future finished exception=Error('Connection closed')>
+playwright._impl._api_types.Error: Connection closed
+2023-11-13 11:04:07,759 - INFO - 存储redis成功
+2023-11-13 11:04:58,846 - INFO - 存储redis成功
+2023-11-13 11:05:03,602 - INFO - 存储redis成功
+2023-11-13 11:05:08,673 - INFO - 存储redis成功
+2023-11-13 11:05:18,014 - INFO - 存储redis成功
+2023-11-13 11:05:44,132 - INFO - 存储redis成功
+2023-11-13 11:05:45,210 - INFO - 存储redis成功
+2023-11-13 11:05:58,205 - INFO - 存储redis成功
+2023-11-13 11:06:02,245 - INFO - Scheduler started
+2023-11-13 11:06:02,276 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-13 11:06:02,277 - INFO - Running job "query_proxy (trigger: date[2023-11-13 03:06:02 UTC], next run at: 2023-11-13 03:06:02 UTC)" (scheduled at 2023-11-13 03:06:02.246283+00:00)
+2023-11-13 11:06:02,278 - INFO - Removed job fb8b25e0a6a5415b9fe1e9660468e13e
+2023-11-13 11:06:02,288 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8888
+ * Running on http://192.168.60.57:8888
+2023-11-13 11:06:02,289 - INFO - [33mPress CTRL+C to quit[0m
+2023-11-13 11:06:06,459 - INFO - 存储redis成功
+2023-11-13 11:06:55,691 - INFO - Scheduler started
+2023-11-13 11:06:55,715 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-13 11:06:55,716 - INFO - Running job "query_proxy (trigger: date[2023-11-13 03:06:55 UTC], next run at: 2023-11-13 03:06:55 UTC)" (scheduled at 2023-11-13 03:06:55.692162+00:00)
+2023-11-13 11:06:55,717 - INFO - Removed job 87ac59fab8a444fab7eeb93b12af3d46
+2023-11-13 11:06:56,978 - INFO - Scheduler started
+2023-11-13 11:06:57,002 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-13 11:06:57,003 - INFO - Running job "query_proxy (trigger: date[2023-11-13 03:06:56 UTC], next run at: 2023-11-13 03:06:56 UTC)" (scheduled at 2023-11-13 03:06:56.979811+00:00)
+2023-11-13 11:06:57,003 - INFO - Removed job 3309237e0e0d4810a9093d8cbc2f8ebd
+2023-11-13 11:06:59,098 - INFO - 存储redis成功
+2023-11-13 11:06:59,858 - INFO - 存储redis成功
+2023-11-13 11:07:03,533 - INFO - 存储redis成功
+2023-11-13 11:07:03,534 - INFO - 存储redis成功
+2023-11-13 11:07:50,797 - INFO - Scheduler started
+2023-11-13 11:07:50,821 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-13 11:07:50,822 - INFO - Running job "query_proxy (trigger: date[2023-11-13 03:07:50 UTC], next run at: 2023-11-13 03:07:50 UTC)" (scheduled at 2023-11-13 03:07:50.798870+00:00)
+2023-11-13 11:07:50,823 - INFO - Removed job 761923d2586c45c1ba9b65954f9a6989
+2023-11-13 11:07:52,076 - INFO - Scheduler started
+2023-11-13 11:07:52,102 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-13 11:07:52,103 - INFO - Running job "query_proxy (trigger: date[2023-11-13 03:07:52 UTC], next run at: 2023-11-13 03:07:52 UTC)" (scheduled at 2023-11-13 03:07:52.076519+00:00)
+2023-11-13 11:07:52,104 - INFO - Removed job 201ff6db6c8349f9a2fdd1d66e4c0af8
+2023-11-13 11:07:52,116 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8888
+ * Running on http://192.168.60.57:8888
+2023-11-13 11:07:52,116 - INFO - [33mPress CTRL+C to quit[0m
+2023-11-13 11:07:55,213 - INFO - 存储redis成功
+2023-11-13 11:08:10,528 - INFO - 存储redis成功
+2023-11-13 11:08:27,674 - INFO - 存储redis成功
+2023-11-13 11:08:27,728 - INFO - 存储redis成功
+2023-11-13 11:09:56,222 - INFO - Scheduler started
+2023-11-13 11:09:56,246 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-13 11:09:56,247 - INFO - Running job "query_proxy (trigger: date[2023-11-13 03:09:56 UTC], next run at: 2023-11-13 03:09:56 UTC)" (scheduled at 2023-11-13 03:09:56.223708+00:00)
+2023-11-13 11:09:56,248 - INFO - Removed job 7fb420b1d1a04f299d3396dd4ab14139
+2023-11-13 11:09:57,489 - INFO - Scheduler started
+2023-11-13 11:09:57,513 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-13 11:09:57,514 - INFO - Running job "query_proxy (trigger: date[2023-11-13 03:09:57 UTC], next run at: 2023-11-13 03:09:57 UTC)" (scheduled at 2023-11-13 03:09:57.490529+00:00)
+2023-11-13 11:09:57,515 - INFO - Removed job dafd3f51560e48b189845aef1d7c609b
+2023-11-13 11:09:57,528 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8888
+ * Running on http://192.168.60.57:8888
+2023-11-13 11:09:57,528 - INFO - [33mPress CTRL+C to quit[0m
+2023-11-13 11:10:00,222 - INFO - 存储redis成功
+2023-11-13 11:10:00,224 - INFO - 存储redis成功
+2023-11-13 11:10:05,221 - INFO - Scheduler started
+2023-11-13 11:10:05,245 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-13 11:10:05,246 - INFO - Running job "query_proxy (trigger: date[2023-11-13 03:10:05 UTC], next run at: 2023-11-13 03:10:05 UTC)" (scheduled at 2023-11-13 03:10:05.221842+00:00)
+2023-11-13 11:10:05,247 - INFO - Removed job ad595a479fb446e29c0dbf080b9e398c
+2023-11-13 11:10:06,474 - INFO - Scheduler started
+2023-11-13 11:10:06,498 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-13 11:10:06,499 - INFO - Running job "query_proxy (trigger: date[2023-11-13 03:10:06 UTC], next run at: 2023-11-13 03:10:06 UTC)" (scheduled at 2023-11-13 03:10:06.474752+00:00)
+2023-11-13 11:10:06,500 - INFO - Removed job 13e4f186c702405986018450a4781bc2
+2023-11-13 11:10:06,511 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8888
+ * Running on http://192.168.60.57:8888
+2023-11-13 11:10:06,511 - INFO - [33mPress CTRL+C to quit[0m
+2023-11-13 11:10:08,199 - INFO - 存储redis成功
+2023-11-13 11:10:08,199 - INFO - 存储redis成功
+2023-11-13 11:11:53,607 - INFO - Scheduler started
+2023-11-13 11:11:53,631 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-13 11:11:53,632 - INFO - Running job "query_proxy (trigger: date[2023-11-13 03:11:53 UTC], next run at: 2023-11-13 03:11:53 UTC)" (scheduled at 2023-11-13 03:11:53.608322+00:00)
+2023-11-13 11:11:53,633 - INFO - Removed job b3f432dfe0f74d4c990252b79aeca9de
+2023-11-13 11:11:54,865 - INFO - Scheduler started
+2023-11-13 11:11:54,889 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-13 11:11:54,890 - INFO - Running job "query_proxy (trigger: date[2023-11-13 03:11:54 UTC], next run at: 2023-11-13 03:11:54 UTC)" (scheduled at 2023-11-13 03:11:54.866391+00:00)
+2023-11-13 11:11:54,891 - INFO - Removed job 08182afa49c24c52adfd68ea726dc479
+2023-11-13 11:11:54,903 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8888
+ * Running on http://192.168.60.57:8888
+2023-11-13 11:11:54,903 - INFO - [33mPress CTRL+C to quit[0m
+2023-11-13 11:11:55,167 - INFO - 127.0.0.1 - - [13/Nov/2023 11:11:55] "GET /shutdown HTTP/1.1" 200 -
+2023-11-13 11:11:58,784 - INFO - 存储redis成功
+2023-11-13 11:12:01,529 - INFO - 存储redis成功
+2023-11-13 11:12:06,145 - INFO - 存储redis成功
+2023-11-13 11:12:06,200 - INFO - 存储redis成功
+2023-11-13 11:14:38,778 - INFO - Scheduler started
+2023-11-13 11:14:38,804 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-13 11:14:38,805 - INFO - Running job "query_proxy (trigger: date[2023-11-13 03:14:38 UTC], next run at: 2023-11-13 03:14:38 UTC)" (scheduled at 2023-11-13 03:14:38.779005+00:00)
+2023-11-13 11:14:38,805 - INFO - Removed job 4214c34119a842ba8ecb53a56e1cb7dc
+2023-11-13 11:14:38,817 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8888
+ * Running on http://192.168.60.57:8888
+2023-11-13 11:14:38,817 - INFO - [33mPress CTRL+C to quit[0m
+2023-11-13 11:14:44,458 - INFO - 存储redis成功
+2023-11-13 11:15:08,699 - INFO - Scheduler started
+2023-11-13 11:15:08,722 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-13 11:15:08,723 - INFO - Running job "query_proxy (trigger: date[2023-11-13 03:15:08 UTC], next run at: 2023-11-13 03:15:08 UTC)" (scheduled at 2023-11-13 03:15:08.699813+00:00)
+2023-11-13 11:15:08,724 - INFO - Removed job 3679f9df710645e688e5be6af75582a6
+2023-11-13 11:15:08,735 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8888
+ * Running on http://192.168.60.57:8888
+2023-11-13 11:15:08,735 - INFO - [33mPress CTRL+C to quit[0m
+2023-11-13 11:15:21,509 - INFO - 存储redis成功
+2023-11-13 11:15:27,841 - INFO - 存储redis成功
+2023-11-13 11:25:56,082 - INFO - 需要验证数据量5499
+2023-11-13 11:26:02,333 - INFO - 存储redis成功
+2023-11-13 11:26:18,606 - INFO - 存储redis成功
+2023-11-13 11:26:30,831 - INFO - 存储redis成功
+2023-11-13 11:26:31,233 - INFO - 存储redis成功
+2023-11-13 11:26:35,712 - INFO - 存储redis成功
+2023-11-13 11:26:36,335 - INFO - 存储redis成功
+2023-11-13 11:26:47,802 - INFO - 存储redis成功
+2023-11-13 11:26:51,352 - INFO - 存储redis成功
+2023-11-13 11:26:52,769 - INFO - 存储redis成功
+2023-11-13 11:27:02,910 - INFO - 存储redis成功
+2023-11-13 11:27:12,255 - INFO - 存储redis成功
+2023-11-13 11:27:22,082 - INFO - 存储redis成功
+2023-11-13 11:27:30,077 - INFO - 存储redis成功
+2023-11-13 11:27:32,009 - INFO - 存储redis成功
+2023-11-13 11:27:33,538 - INFO - 存储redis成功
+2023-11-13 11:27:33,905 - INFO - 存储redis成功
+2023-11-13 11:27:35,620 - INFO - 存储redis成功
+2023-11-13 11:27:41,090 - INFO - 存储redis成功
+2023-11-13 11:27:58,338 - INFO - 存储redis成功
+2023-11-13 11:27:59,441 - INFO - 存储redis成功
+2023-11-13 11:28:07,461 - INFO - 存储redis成功
+2023-11-13 11:28:08,208 - INFO - 存储redis成功
+2023-11-13 11:28:08,484 - INFO - 存储redis成功
+2023-11-13 11:28:12,444 - INFO - 存储redis成功
+2023-11-13 11:28:13,603 - INFO - 存储redis成功
+2023-11-13 11:28:17,233 - INFO - 存储redis成功
+2023-11-13 11:28:29,065 - INFO - 存储redis成功
+2023-11-13 11:28:49,764 - INFO - 存储redis成功
+2023-11-13 11:28:52,230 - INFO - 存储redis成功
+2023-11-13 11:29:10,670 - INFO - 存储redis成功
+2023-11-13 11:29:22,332 - INFO - 存储redis成功
+2023-11-13 11:29:31,873 - INFO - 存储redis成功
+2023-11-13 11:30:07,616 - INFO - 存储redis成功
+2023-11-13 11:30:16,217 - INFO - 存储redis成功
+2023-11-13 11:30:18,658 - INFO - 存储redis成功
+2023-11-13 11:30:26,303 - INFO - 存储redis成功
+2023-11-13 11:30:27,358 - INFO - 存储redis成功
+2023-11-13 11:30:42,886 - INFO - 存储redis成功
+2023-11-13 11:30:54,718 - INFO - 存储redis成功
+2023-11-13 11:30:59,297 - INFO - 存储redis成功
+2023-11-13 11:31:05,988 - INFO - 存储redis成功
+2023-11-13 11:31:10,856 - INFO - 存储redis成功
+2023-11-13 11:31:13,181 - INFO - 存储redis成功
+2023-11-13 11:31:22,111 - INFO - 存储redis成功
+2023-11-13 11:31:25,865 - INFO - 存储redis成功
+2023-11-13 11:31:34,946 - INFO - 存储redis成功
+2023-11-13 11:31:46,391 - INFO - 存储redis成功
+2023-11-13 11:31:49,918 - INFO - 存储redis成功
+2023-11-13 11:31:55,088 - INFO - 存储redis成功
+2023-11-13 11:31:57,828 - INFO - 存储redis成功
+2023-11-13 11:32:00,164 - INFO - 存储redis成功
+2023-11-13 11:32:05,223 - INFO - 存储redis成功
+2023-11-13 11:32:09,033 - ERROR - Certificate did not match expected hostname: www.rapid7.com. Certificate: {'subject': ((('commonName', 'agileverse.io'),),), 'issuer': ((('countryName', 'US'),), (('organizationName', "Let's Encrypt"),), (('commonName', 'R3'),)), 'version': 3, 'serialNumber': '0498A4632F7B1661A34D970A6FB0B19BB3EF', 'notBefore': 'Oct 14 08:34:09 2023 GMT', 'notAfter': 'Jan 12 08:34:08 2024 GMT', 'subjectAltName': (('DNS', 'agileverse.io'), ('DNS', 'www.agileverse.io')), 'OCSP': ('http://r3.o.lencr.org',), 'caIssuers': ('http://r3.i.lencr.org/',)}
+2023-11-13 11:32:15,897 - INFO - 存储redis成功
+2023-11-13 11:32:29,912 - INFO - 存储redis成功
+2023-11-13 11:32:33,209 - INFO - 存储redis成功
+2023-11-13 11:32:42,174 - INFO - 存储redis成功
+2023-11-13 11:32:50,135 - INFO - 存储redis成功
+2023-11-13 11:32:57,887 - INFO - 存储redis成功
+2023-11-13 11:33:06,699 - INFO - 存储redis成功
+2023-11-13 11:33:07,343 - INFO - 存储redis成功
+2023-11-13 11:33:14,580 - INFO - 存储redis成功
+2023-11-13 11:33:15,490 - INFO - 存储redis成功
+2023-11-13 11:33:15,709 - INFO - 存储redis成功
+2023-11-13 11:33:15,908 - INFO - 存储redis成功
+2023-11-13 11:33:37,076 - INFO - 存储redis成功
+2023-11-13 11:33:46,395 - INFO - 存储redis成功
+2023-11-13 11:33:48,628 - INFO - 存储redis成功
+2023-11-13 11:33:50,668 - INFO - 存储redis成功
+2023-11-13 11:33:52,257 - INFO - 存储redis成功
+2023-11-13 11:33:57,154 - INFO - 存储redis成功
+2023-11-13 11:33:59,528 - INFO - 存储redis成功
+2023-11-13 11:34:06,639 - INFO - 存储redis成功
+2023-11-13 11:34:25,848 - INFO - 存储redis成功
+2023-11-13 11:34:32,800 - INFO - 存储redis成功
+2023-11-13 11:34:36,324 - INFO - 存储redis成功
+2023-11-13 11:34:38,333 - INFO - 存储redis成功
+2023-11-13 11:34:41,769 - INFO - 存储redis成功
+2023-11-13 11:34:55,813 - INFO - 存储redis成功
+2023-11-13 11:34:57,320 - INFO - 存储redis成功
+2023-11-13 11:34:59,043 - INFO - 存储redis成功
+2023-11-13 11:35:15,121 - INFO - 存储redis成功
+2023-11-13 11:35:21,109 - INFO - 存储redis成功
+2023-11-13 11:35:32,980 - INFO - 存储redis成功
+2023-11-13 11:35:33,421 - INFO - 存储redis成功
+2023-11-13 11:35:34,664 - INFO - 存储redis成功
+2023-11-13 11:35:42,792 - INFO - 存储redis成功
+2023-11-13 11:36:06,576 - INFO - 存储redis成功
+2023-11-13 11:36:21,968 - INFO - 存储redis成功
+2023-11-13 11:36:28,090 - INFO - 存储redis成功
+2023-11-13 11:36:31,403 - INFO - 存储redis成功
+2023-11-13 11:36:33,576 - INFO - 存储redis成功
+2023-11-13 11:36:41,218 - INFO - 存储redis成功
+2023-11-13 11:37:00,550 - INFO - 存储redis成功
+2023-11-13 11:37:06,603 - INFO - 存储redis成功
+2023-11-13 11:37:21,631 - INFO - 存储redis成功
+2023-11-13 11:37:24,437 - INFO - 存储redis成功
+2023-11-13 11:37:32,905 - INFO - 存储redis成功
+2023-11-13 11:37:49,365 - INFO - 存储redis成功
+2023-11-13 11:37:50,088 - INFO - 存储redis成功
+2023-11-13 11:37:51,374 - INFO - 存储redis成功
+2023-11-13 11:37:52,887 - INFO - 存储redis成功
+2023-11-13 11:37:55,891 - INFO - 存储redis成功
+2023-11-13 11:38:01,585 - INFO - 存储redis成功
+2023-11-13 11:38:03,379 - INFO - 存储redis成功
+2023-11-13 11:38:14,822 - INFO - 存储redis成功
+2023-11-13 11:38:15,905 - INFO - 存储redis成功
+2023-11-13 11:38:20,415 - INFO - 存储redis成功
+2023-11-13 11:38:26,014 - INFO - 存储redis成功
+2023-11-13 11:38:29,997 - INFO - 存储redis成功
+2023-11-13 11:38:31,139 - INFO - 存储redis成功
+2023-11-13 11:39:09,535 - INFO - 存储redis成功
+2023-11-13 11:39:14,929 - INFO - 存储redis成功
+2023-11-13 11:39:16,385 - INFO - 存储redis成功
+2023-11-13 11:39:25,556 - INFO - 存储redis成功
+2023-11-13 11:39:28,100 - INFO - 存储redis成功
+2023-11-13 11:39:30,946 - INFO - 存储redis成功
+2023-11-13 11:39:39,790 - INFO - 存储redis成功
+2023-11-13 11:40:02,529 - INFO - 存储redis成功
+2023-11-13 11:40:17,126 - INFO - 存储redis成功
+2023-11-13 11:40:19,682 - INFO - 存储redis成功
+2023-11-13 11:40:22,991 - INFO - 存储redis成功
+2023-11-13 11:40:25,286 - INFO - 存储redis成功
+2023-11-13 11:40:31,027 - INFO - 存储redis成功
+2023-11-13 11:40:32,546 - INFO - 存储redis成功
+2023-11-13 11:40:34,515 - INFO - 存储redis成功
+2023-11-13 11:40:36,207 - INFO - 存储redis成功
+2023-11-13 11:40:44,630 - INFO - 存储redis成功
+2023-11-13 11:40:44,856 - INFO - 存储redis成功
+2023-11-13 11:40:45,876 - INFO - 存储redis成功
+2023-11-13 11:40:54,211 - INFO - 存储redis成功
+2023-11-13 11:40:55,614 - INFO - 存储redis成功
+2023-11-13 11:41:32,152 - INFO - 存储redis成功
+2023-11-13 13:14:04,436 - INFO - Scheduler started
+2023-11-13 13:14:04,461 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-13 13:14:04,462 - INFO - Running job "query_proxy (trigger: date[2023-11-13 05:14:04 UTC], next run at: 2023-11-13 05:14:04 UTC)" (scheduled at 2023-11-13 05:14:04.437685+00:00)
+2023-11-13 13:14:04,463 - INFO - Removed job cb8f39c9aa294b4d94d52df43d14d508
+2023-11-13 13:14:04,474 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8888
+ * Running on http://192.168.60.57:8888
+2023-11-13 13:14:04,474 - INFO - [33mPress CTRL+C to quit[0m
+2023-11-13 13:14:22,083 - INFO - 存储redis成功
+2023-11-13 13:15:34,483 - INFO - 存储redis成功
+2023-11-13 13:15:36,896 - INFO - 存储redis成功
+2023-11-13 13:15:40,181 - INFO - 存储redis成功
+2023-11-13 13:15:53,015 - INFO - 存储redis成功
+2023-11-13 13:16:14,711 - INFO - 存储redis成功
+2023-11-13 13:16:16,133 - INFO - 存储redis成功
+2023-11-13 13:16:17,526 - INFO - 192.168.60.57 - - [13/Nov/2023 13:16:17] "GET / HTTP/1.1" 200 -
+2023-11-13 13:16:17,604 - INFO - 192.168.60.57 - - [13/Nov/2023 13:16:17] "GET /favicon.ico HTTP/1.1" 200 -
+2023-11-13 13:16:18,240 - INFO - 存储redis成功
+2023-11-13 13:16:18,240 - INFO - Job "query_proxy (trigger: date[2023-11-13 05:14:04 UTC], next run at: 2023-11-13 05:14:04 UTC)" executed successfully
+2023-11-13 13:16:35,183 - INFO - 192.168.60.57 - - [13/Nov/2023 13:16:35] "[32mGET /proxy HTTP/1.1[0m" 308 -
+2023-11-13 13:16:35,186 - INFO - 192.168.60.57 - - [13/Nov/2023 13:16:35] "GET /proxy/ HTTP/1.1" 200 -
+2023-11-13 13:16:35,233 - INFO - 192.168.60.57 - - [13/Nov/2023 13:16:35] "GET /favicon.ico HTTP/1.1" 200 -
+2023-11-13 13:17:35,677 - INFO - 192.168.60.57 - - [13/Nov/2023 13:17:35] "GET /proxy/get HTTP/1.1" 200 -
+2023-11-13 13:17:35,720 - INFO - 192.168.60.57 - - [13/Nov/2023 13:17:35] "GET /favicon.ico HTTP/1.1" 200 -
+2023-11-13 13:17:54,398 - INFO - 192.168.60.57 - - [13/Nov/2023 13:17:54] "GET /proxy/get HTTP/1.1" 200 -
+2023-11-13 13:17:54,431 - INFO - 192.168.60.57 - - [13/Nov/2023 13:17:54] "GET /favicon.ico HTTP/1.1" 200 -
+2023-11-13 13:18:12,139 - INFO - 192.168.60.57 - - [13/Nov/2023 13:18:12] "GET /proxy/all?url=https://www.rapid7.com/db/modules/payload/windows/dllinject/bind_tcp_rc4/ HTTP/1.1" 200 -
+2023-11-13 13:18:12,178 - INFO - 192.168.60.57 - - [13/Nov/2023 13:18:12] "GET /favicon.ico HTTP/1.1" 200 -
+2023-11-13 13:18:17,256 - INFO - 192.168.60.57 - - [13/Nov/2023 13:18:17] "GET /proxy/all HTTP/1.1" 200 -
+2023-11-13 13:18:17,299 - INFO - 192.168.60.57 - - [13/Nov/2023 13:18:17] "GET /favicon.ico HTTP/1.1" 200 -
+2023-11-13 13:18:35,089 - INFO - 192.168.60.57 - - [13/Nov/2023 13:18:35] "GET /id/get HTTP/1.1" 200 -
+2023-11-13 13:18:35,127 - INFO - 192.168.60.57 - - [13/Nov/2023 13:18:35] "GET /favicon.ico HTTP/1.1" 200 -
+2023-11-13 13:19:22,772 - INFO - 192.168.60.57 - - [13/Nov/2023 13:19:22] "GET /id/get/?key=7ujm,lp- HTTP/1.1" 200 -
+2023-11-13 13:19:22,814 - INFO - 192.168.60.57 - - [13/Nov/2023 13:19:22] "GET /favicon.ico HTTP/1.1" 200 -
+2023-11-13 13:19:31,517 - INFO - 192.168.60.57 - - [13/Nov/2023 13:19:31] "GET /id/get/?key=7ujm,lp- HTTP/1.1" 200 -
+2023-11-13 13:19:31,551 - INFO - 192.168.60.57 - - [13/Nov/2023 13:19:31] "GET /favicon.ico HTTP/1.1" 200 -
+2023-11-13 13:19:59,523 - INFO - 192.168.60.57 - - [13/Nov/2023 13:19:59] "GET /id/get/?key=7ujm,lp-= HTTP/1.1" 200 -
+2023-11-13 13:19:59,568 - INFO - 192.168.60.57 - - [13/Nov/2023 13:19:59] "GET /favicon.ico HTTP/1.1" 200 -
+2023-11-13 13:20:02,801 - INFO - 192.168.60.57 - - [13/Nov/2023 13:20:02] "GET /id/get/?key=7ujm,lp-= HTTP/1.1" 200 -
+2023-11-13 13:20:02,835 - INFO - 192.168.60.57 - - [13/Nov/2023 13:20:02] "GET /favicon.ico HTTP/1.1" 200 -
+2023-11-13 13:20:18,549 - INFO - 192.168.60.57 - - [13/Nov/2023 13:20:18] "GET /id/get?key=7ujm,lp-= HTTP/1.1" 200 -
+2023-11-13 13:20:18,597 - INFO - 192.168.60.57 - - [13/Nov/2023 13:20:18] "GET /favicon.ico HTTP/1.1" 200 -
+2023-11-13 13:20:45,614 - INFO - 192.168.60.57 - - [13/Nov/2023 13:20:45] "GET /proxy/get?key=7ujm,lp-= HTTP/1.1" 200 -
+2023-11-13 13:20:45,662 - INFO - 192.168.60.57 - - [13/Nov/2023 13:20:45] "GET /favicon.ico HTTP/1.1" 200 -
+2023-11-13 13:20:53,356 - INFO - 192.168.60.57 - - [13/Nov/2023 13:20:53] "GET /proxy/get/?key=7ujm,lp-= HTTP/1.1" 200 -
+2023-11-13 13:20:53,403 - INFO - 192.168.60.57 - - [13/Nov/2023 13:20:53] "GET /favicon.ico HTTP/1.1" 200 -

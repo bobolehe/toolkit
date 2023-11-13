@@ -11,7 +11,7 @@ ID = Blueprint('ID', __name__, url_prefix='/id')
 
 
 # id获取端口
-@ID.get('/get')
+@ID.get('/get/')
 @authorize()
 def index():
     num = int(request.args.get('num', 50))
@@ -28,7 +28,7 @@ def index():
     return jsonify(err)
 
 
-@ID.route('/post', methods=['GET', 'POST'])
+@ID.route('/post/', methods=['GET', 'POST'])
 @authorize()
 def about():
     if request.method == 'POST':

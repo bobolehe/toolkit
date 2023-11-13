@@ -5,10 +5,11 @@
 import json
 import random
 
+from flask import Blueprint, request
 from proxy_tool.app.common.rights import authorize
 from proxy_tool.app.common.http import success_api, fail_api, table_api, err_api
 from proxy_tool.app.extensions import redis_store
-from flask import Blueprint, request
+from proxy_tool.app.config import BaseConfig
 from proxy_tool.check_proxy.check_proxy import run_check
 from proxy_tool.check_proxy.crawler_proxy import query_proxy
 from task_tool import apscheduler_task
@@ -26,7 +27,7 @@ def index():
 
 
 # 获取初级代理需要自行验证
-@proxy_bp.route('/<way>', methods=["GET"])
+@proxy_bp.route('/<way>/', methods=["GET"])
 @authorize()
 def success(way):
     """
@@ -58,6 +59,7 @@ def success(way):
 def proxy():
     url = request.args.get('url')
     if url:
+        BaseConfig.VERIFY_URL.append(url)
         # redis中读取
         job, event = apscheduler_task.assignments(scheduler, run_check, parameters=[url])
         msg = f"已提交验证，稍后进行获取即可通过id{job.id}id可查询任务状态"

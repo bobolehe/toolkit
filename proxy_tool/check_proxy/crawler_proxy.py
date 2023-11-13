@@ -21,6 +21,7 @@ rds = RedisProxy()
 
 def query_proxy():
     proxy_list = []
+    # rds.ret.delete('primary_proxy')
 
     proxy_list += crun()
     rds.w_h(data=proxy_list, key='primary_proxy')

@@ -1,8 +1,8 @@
 import datetime
 import requests
-
 import threading
 
+from functools import partial
 from log import log_data
 from concurrent.futures import ThreadPoolExecutor
 from proxy_tool.check_proxy.redis_tool import RedisProxy
@@ -29,19 +29,16 @@ def check_proxy(proxy, url):
             rds.w_h(data=yes_proxy_list, key=f'{url}')
     except requests.exceptions.RequestException as e:
         pass
-        # log_data.error(f"Request error: {e}")
 
 
 def run_check(url):
     proxy_list = rds.r_h('primary_proxy')
     log_data.info(f"需要验证数据量{len(proxy_list)}")
-    if rds.r_h(url):
-        rds.ret.delete(url)
-    threads = []
-    for ip in proxy_list:
-        t = threading.Thread(target=check_proxy, args=(ip, url))
-        threads.append(t)
-        t.start()
+
+    max_threads = 100  # 假设最大线程数量为100
+    with ThreadPoolExecutor(max_threads) as executor:
+        check_proxy_partial = partial(check_proxy, url=url)
+        valid_proxies = list(executor.map(check_proxy_partial, proxy_list))
 
 
 if __name__ == '__main__':

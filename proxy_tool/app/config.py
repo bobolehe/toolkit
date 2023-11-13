@@ -17,7 +17,7 @@ class BaseConfig:
         "DB": 0,
     }
     # 权限是否启用
-    RIGHTS = True  # 是否启用权限
+    RIGHTS = False  # 是否启用权限
     RIGHTS_GET = 'key'  # 接收权限验证参数名
     RIGHTS_KEY = '7ujm,lp-='  # 允许访问密钥
 
@@ -39,3 +39,5 @@ class BaseConfig:
     STATIC_FOLDER = '/static'
     # 取消ASCII编码
     JSON_AS_ASCII = False
+
+    VERIFY_URL = []
