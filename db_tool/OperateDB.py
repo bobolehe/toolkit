@@ -248,7 +248,6 @@ class MysqlData:
         # 将item对象的键值分别取出
         keys = sorted(list(item.keys()), key=len)
         values = [item[key] for key in keys]
-        # sql = f"insert into {self.table}({','.join(keys)}) values ({','.join(values)});"
         # sql语句
         sql = f"insert into {table}(`{'`,`'.join(keys)}`) values ({'%s,' * ((len(values) - 1))}%s);"
 

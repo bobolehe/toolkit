@@ -34,7 +34,7 @@ def check_proxy(proxy, url):
 def run_check(url):
     proxy_list = rds.r_h('primary_proxy')
     log_data.info(f"需要验证数据量{len(proxy_list)}")
-
+    rds.ret.delete(url)
     max_threads = 100  # 假设最大线程数量为100
     with ThreadPoolExecutor(max_threads) as executor:
         check_proxy_partial = partial(check_proxy, url=url)

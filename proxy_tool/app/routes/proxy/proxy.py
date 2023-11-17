@@ -18,6 +18,7 @@ from task_tool.apscheduler_task import scheduler
 proxy_bp = Blueprint('proxy', __name__, url_prefix='/proxy')
 
 query_task, query_task_err = apscheduler_task.assignments(scheduler, query_proxy)
+apscheduler_task.scheduled_tasks(scheduler, query_proxy, sleep=1800)
 
 
 @proxy_bp.route('/')
@@ -62,6 +63,7 @@ def proxy():
         BaseConfig.VERIFY_URL.append(url)
         # redis中读取
         job, event = apscheduler_task.assignments(scheduler, run_check, parameters=[url])
+        apscheduler_task.scheduled_tasks(scheduler, run_check, parameters=[url], sleep=1800)
         msg = f"已提交验证，稍后进行获取即可通过id{job.id}id可查询任务状态"
         return table_api(msg=msg, data=event)
     else:
