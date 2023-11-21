@@ -3,9 +3,9 @@
 """
 from flask import Blueprint
 from flask import request, jsonify
-from proxy_tool.app.common.rights import authorize
-from proxy_tool.app.tool.id.id_generator import IdGenerator
-from proxy_tool.app.tool.id.id_seq import IdSeq
+from ....app.common.rights import authorize
+from ....app.tool.id.id_generator import IdGenerator
+from ....app.tool.id.id_seq import IdSeq
 
 ID = Blueprint('ID', __name__, url_prefix='/id')
 

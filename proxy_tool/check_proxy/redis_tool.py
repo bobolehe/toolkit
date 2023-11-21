@@ -1,7 +1,7 @@
 import json
 import redis
-from proxy_tool.check_proxy import config as setting
-from log import log_data
+from ..check_proxy import config as setting
+from ...log import log_data
 
 
 class RedisProxy:

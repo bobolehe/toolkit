@@ -5,7 +5,7 @@ import threading
 from functools import partial
 from log import log_data
 from concurrent.futures import ThreadPoolExecutor
-from proxy_tool.check_proxy.redis_tool import RedisProxy
+from ..check_proxy.redis_tool import RedisProxy
 
 yes_proxy_list = []
 

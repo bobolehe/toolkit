@@ -1,10 +1,10 @@
 import os
 from flask import Flask
 
-from proxy_tool.app.routes import init_view
-from proxy_tool.app.extensions import init_plugs
-from proxy_tool.app.config import BaseConfig
-from proxy_tool.app.common.http import fail_api
+from ..app.routes import init_view
+from ..app.extensions import init_plugs
+from ..app.config import BaseConfig
+from ..app.common.http import fail_api
 
 
 def create_app():

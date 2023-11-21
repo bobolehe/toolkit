@@ -6,19 +6,19 @@ import json
 import random
 
 from flask import Blueprint, request
-from proxy_tool.app.common.rights import authorize
-from proxy_tool.app.common.http import success_api, fail_api, table_api, err_api
-from proxy_tool.app.extensions import redis_store
-from proxy_tool.app.config import BaseConfig
-from proxy_tool.check_proxy.check_proxy import run_check
-from proxy_tool.check_proxy.crawler_proxy import query_proxy
-from task_tool import apscheduler_task
-from task_tool.apscheduler_task import scheduler
+from ....app.common.rights import authorize
+from ....app.common.http import success_api, fail_api, table_api, err_api
+from ....app.extensions import redis_store
+from ....app.config import BaseConfig
+from ....check_proxy.check_proxy import run_check
+from ....check_proxy.crawler_proxy import query_proxy
+from .....task_tool import apscheduler_task
+from .....task_tool.apscheduler_task import scheduler
 
 proxy_bp = Blueprint('proxy', __name__, url_prefix='/proxy')
 
 query_task, query_task_err = apscheduler_task.assignments(scheduler, query_proxy)
-apscheduler_task.scheduled_tasks(scheduler, query_proxy, sleep=1800)
+apscheduler_task.cron_scheduled_tasks(scheduler, query_proxy, cron='* 8 * * *')
 
 
 @proxy_bp.route('/')

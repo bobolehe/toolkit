@@ -6,6 +6,7 @@ from apscheduler.jobstores.redis import RedisJobStore
 from apscheduler.jobstores.memory import MemoryJobStore
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
+from apscheduler.triggers.cron import CronTrigger
 from apscheduler.events import EVENT_JOB_EXECUTED, EVENT_JOB_ERROR
 from datetime import datetime, timedelta
 from urllib.parse import urlparse
@@ -53,6 +54,29 @@ def create_scheduler(setting):
     return scheduler
 
 
+def cron_scheduled_tasks(scheduler, task, cron, parameters=None):
+    """
+    分配每日定时任务
+    :param scheduler: 调度器
+    :param task: 执行函数
+    :param hour: 指定小时
+    :param minute: 指定分钟
+    :param parameters: 函数所需参数
+    :return: 返回任务名称id
+    """
+    if parameters is None:
+        parameters = []
+
+    # 使用 CronTrigger 设置每日定时任务，指定小时和分钟
+    # 分 时 日 月 星期
+    # cron_expression = f'* * * * *'
+    cron_expression = cron
+    trigger = CronTrigger.from_crontab(cron_expression)
+
+    jobid = scheduler.add_job(func=task, trigger=trigger, args=parameters, jobstore='redis')
+    return jobid
+
+
 def scheduled_tasks(scheduler, task, sleep, parameters=None):
     """
     分配定时任务
@@ -77,7 +101,7 @@ def scheduled_tasks(scheduler, task, sleep, parameters=None):
     """
     if parameters is None:
         parameters = []
-    jobid = scheduler.add_job(func=task, trigger='interval', seconds=sleep, args=parameters)
+    jobid = scheduler.add_job(func=task, trigger='interval', seconds=sleep, args=parameters, jobstore='redis')
     return jobid
 
 

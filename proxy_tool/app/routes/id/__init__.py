@@ -1,5 +1,5 @@
 from flask import Flask
-from proxy_tool.app.routes.id.get import ID
+from ....app.routes.id.get import ID
 
 
 def register_id_views(app: Flask):

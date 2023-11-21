@@ -3,8 +3,8 @@
 """
 from functools import wraps
 from flask import request
-from proxy_tool.app.common.http import err_api
-from proxy_tool.app.config import BaseConfig
+from ...app.common.http import err_api
+from ...app.config import BaseConfig
 
 
 def authorize(power: bool = BaseConfig.RIGHTS):
