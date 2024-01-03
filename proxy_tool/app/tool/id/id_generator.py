@@ -4,8 +4,8 @@
 # 64位ID的划分
 from loguru import logger
 import time
-from ....app.tool.id.exceptions import InvalidSystemClock
-from ....app.tool.id.id_seq import IdSeq
+from ...tool.id.exceptions import InvalidSystemClock
+from ...tool.id.id_seq import IdSeq
 # id生成器
 # 时间戳从2016-01-01开始计算
 # work_id 7位，最大99

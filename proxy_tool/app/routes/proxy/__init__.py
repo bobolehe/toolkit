@@ -1,5 +1,5 @@
 from flask import Flask
-from proxy_tool.app.routes.proxy.proxy import proxy_bp
+from .proxy import proxy_bp
 
 
 def register_proxy_views(app: Flask):

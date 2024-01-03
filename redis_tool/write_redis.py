@@ -12,6 +12,7 @@ class RedisProxy:
         port = setting.redis_config["PORT"]  # redis服务端口
         password = setting.redis_config["PASSWORD"]  # redis服务密码
         db = setting.redis_config["DB"]  # redis服务库
+        username = setting.redis_config['']
 
         if password:
             self.ret = redis.StrictRedis(host=host, port=port, password=password, db=db)

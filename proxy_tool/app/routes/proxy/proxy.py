@@ -6,14 +6,14 @@ import json
 import random
 
 from flask import Blueprint, request
-from ....app.common.rights import authorize
-from ....app.common.http import success_api, fail_api, table_api, err_api
-from ....app.extensions import redis_store
-from ....app.config import BaseConfig
-from ....check_proxy.check_proxy import run_check
-from ....check_proxy.crawler_proxy import query_proxy
-from .....task_tool import apscheduler_task
-from .....task_tool.apscheduler_task import scheduler
+from ...common.rights import authorize
+from ...common.http import success_api, fail_api, table_api, err_api
+from ...extensions import redis_store
+from ...config import BaseConfig
+from ...check_proxy.check_proxy import run_check
+from ...check_proxy.crawler_proxy import query_proxy
+from ...task_tool import apscheduler_task
+from ...task_tool.apscheduler_task import scheduler
 
 proxy_bp = Blueprint('proxy', __name__, url_prefix='/proxy')
 

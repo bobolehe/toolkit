@@ -1,0 +1,63 @@
+2023-11-22 10:36:10,239 - INFO - Scheduler started
+2023-11-22 10:36:10,269 - WARNING - Error getting due jobs from job store 'redis': Client sent AUTH, but no password is set
+2023-11-22 10:36:20,284 - WARNING - Error getting due jobs from job store 'redis': Client sent AUTH, but no password is set
+2023-11-22 10:36:30,291 - WARNING - Error getting due jobs from job store 'redis': Client sent AUTH, but no password is set
+2023-11-22 10:36:40,306 - WARNING - Error getting due jobs from job store 'redis': Client sent AUTH, but no password is set
+2023-11-22 10:36:50,316 - WARNING - Error getting due jobs from job store 'redis': Client sent AUTH, but no password is set
+2023-11-22 10:37:00,327 - WARNING - Error getting due jobs from job store 'redis': Client sent AUTH, but no password is set
+2023-11-22 10:37:10,336 - WARNING - Error getting due jobs from job store 'redis': Client sent AUTH, but no password is set
+2023-11-22 10:37:20,340 - WARNING - Error getting due jobs from job store 'redis': Client sent AUTH, but no password is set
+2023-11-22 10:37:30,349 - WARNING - Error getting due jobs from job store 'redis': Client sent AUTH, but no password is set
+2023-11-22 10:37:40,360 - WARNING - Error getting due jobs from job store 'redis': Client sent AUTH, but no password is set
+2023-11-22 10:38:41,276 - INFO - Scheduler started
+2023-11-22 10:38:41,389 - WARNING - Run time of job "query_proxy (trigger: cron[month='*', day='*', day_of_week='*', hour='8', minute='*'], next run at: 2023-11-22 08:00:00 CST)" was missed by 1:39:41.389928
+2023-11-22 10:38:41,392 - WARNING - Run time of job "query_proxy (trigger: cron[month='*', day='*', day_of_week='*', hour='8', minute='*'], next run at: 2023-11-23 08:00:00 CST)" was missed by 1:39:41.392928
+2023-11-22 10:38:41,393 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-22 10:38:41,394 - INFO - Running job "query_proxy (trigger: date[2023-11-22 02:38:41 UTC], next run at: 2023-11-22 02:38:41 UTC)" (scheduled at 2023-11-22 02:38:41.276928+00:00)
+2023-11-22 10:38:41,395 - INFO - Removed job 1c07b3685e244cabb7ae21ab4608ca10
+2023-11-22 10:38:41,396 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-22 10:38:41,450 - ERROR - Job "query_proxy (trigger: date[2023-11-22 02:38:41 UTC], next run at: 2023-11-22 02:38:41 UTC)" raised an exception
+Traceback (most recent call last):
+  File "D:\anaconda3\lib\site-packages\apscheduler\executors\base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "D:\yun\tools\proxy_tool\app\check_proxy\crawler_proxy.py", line 23, in query_proxy
+    rds.ret.delete('primary_proxy')
+  File "D:\anaconda3\lib\site-packages\redis\client.py", line 1567, in delete
+    return self.execute_command('DEL', *names)
+  File "D:\anaconda3\lib\site-packages\redis\client.py", line 898, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "D:\anaconda3\lib\site-packages\redis\connection.py", line 1192, in get_connection
+    connection.connect()
+  File "D:\anaconda3\lib\site-packages\redis\connection.py", line 567, in connect
+    self.on_connect()
+  File "D:\anaconda3\lib\site-packages\redis\connection.py", line 643, in on_connect
+    auth_response = self.read_response()
+  File "D:\anaconda3\lib\site-packages\redis\connection.py", line 739, in read_response
+    response = self._parser.read_response()
+  File "D:\anaconda3\lib\site-packages\redis\connection.py", line 340, in read_response
+    raise error
+redis.exceptions.AuthenticationError: Client sent AUTH, but no password is set
+2023-11-22 10:38:41,517 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8888
+ * Running on http://192.168.60.57:8888
+2023-11-22 10:38:41,517 - INFO - [33mPress CTRL+C to quit[0m
+2023-11-22 10:40:32,196 - INFO - Scheduler started
+2023-11-22 10:40:32,220 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-22 10:40:32,221 - INFO - Running job "query_proxy (trigger: date[2023-11-22 02:40:32 UTC], next run at: 2023-11-22 02:40:32 UTC)" (scheduled at 2023-11-22 02:40:32.196324+00:00)
+2023-11-22 10:40:32,222 - INFO - Removed job cb9b74a8411a406683d9ff6ce2f01627
+2023-11-22 10:40:32,265 - INFO - Added job "query_proxy" to job store "redis"
+2023-11-22 10:40:32,300 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8888
+ * Running on http://192.168.60.57:8888
+2023-11-22 10:40:32,300 - INFO - [33mPress CTRL+C to quit[0m
+2023-11-22 10:40:45,485 - INFO - 存储redis成功
+2023-11-22 10:41:54,188 - INFO - 存储redis成功
+2023-11-22 10:41:56,815 - INFO - 存储redis成功
+2023-11-22 10:42:00,604 - INFO - 存储redis成功
+2023-11-22 10:42:04,099 - INFO - 存储redis成功
+2023-11-22 10:42:25,728 - INFO - 存储redis成功
+2023-11-22 10:42:27,039 - INFO - 存储redis成功
+2023-11-22 10:42:28,809 - INFO - 存储redis成功
+2023-11-22 10:42:28,810 - INFO - Job "query_proxy (trigger: date[2023-11-22 02:40:32 UTC], next run at: 2023-11-22 02:40:32 UTC)" executed successfully

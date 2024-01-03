@@ -3,7 +3,7 @@ import requests
 import threading
 
 from functools import partial
-from log import log_data
+from ..log import log_data
 from concurrent.futures import ThreadPoolExecutor
 from ..check_proxy.redis_tool import RedisProxy
 

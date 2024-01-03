@@ -1,5 +1,3 @@
-import datetime
-
 from ..proxy_list_tool.checkerproxy_proxy import run as crun
 from ..proxy_list_tool.english_proxy import run as erun  # 需要代理
 from ..proxy_list_tool.free_proxy import run as frun

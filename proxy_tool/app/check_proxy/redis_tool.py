@@ -1,7 +1,7 @@
 import json
 import redis
 from ..check_proxy import config as setting
-from ...log import log_data
+from ..log import log_data
 
 
 class RedisProxy:
@@ -9,7 +9,7 @@ class RedisProxy:
     def __init__(self):
         host = setting.redis_config["HOST"]  # redis服务地址
         port = setting.redis_config["PORT"]  # redis服务端口
-        password = setting.redis_config["PASSWORD"]  # redis服务密码
+        password = setting.redis_config.get("PASSWORD", None)  # redis服务密码
         db = setting.redis_config["DB"]  # redis服务库
 
         if password:

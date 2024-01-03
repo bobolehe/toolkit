@@ -1,10 +1,10 @@
 import os
 from flask import Flask
 
-from ..app.routes import init_view
-from ..app.extensions import init_plugs
-from ..app.config import BaseConfig
-from ..app.common.http import fail_api
+from .routes import init_view
+from .extensions import init_plugs
+from .config import BaseConfig
+from .common.http import fail_api
 
 
 def create_app():

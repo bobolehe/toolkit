@@ -1,17 +1,11 @@
-"""
-百度翻译 翻译速度受ip影响
-环境python3.10.*
-PyExecJS == 1.5.1
-playwright == 1.32.1
-`pip install playwright`
-`playwright install`
-"""
+"""百度翻译"""
+import datetime
+
 import execjs
 import time
 import requests
 from playwright.sync_api import sync_playwright
 
-# 翻译字符加密js代码
 js_str = r"""
 function e(t, e) {
     (null == e || e > t.length) && (e = t.length);
@@ -19,7 +13,7 @@ function e(t, e) {
         r[n] = t[n];
     return r
 };
-
+    
 function n(t, e) {
     for (var n = 0; n < e.length - 2; n += 3) {
         var r = e.charAt(n + 2);
@@ -37,6 +31,7 @@ function b(t) {
             a > 30 && (t = "".concat(t.substr(0, 10)).concat(t.substr(Math.floor(a / 2) - 5, 10)).concat(t.substr(-10, 10)))
         } else {
             for (var s = t.split(/[\uD800-\uDBFF][\uDC00-\uDFFF]/), c = 0, l = s.length, u = []; c < l; c++)
+                
                 "" !== s[c] && u.push.apply(u, function(t) {
                     if (Array.isArray(t))
                         return e(t)
@@ -76,160 +71,161 @@ var r = "320305.131321201"
 
 function getSign(t) {
    return b(t)
-};
-
-function getToken() {
-    return (window.common.token)
-};
+}
 
 """
+# 推荐使用Edge取请求cookie和token
+cookie = 'BAIDUID=62D29763475FF8C6DA6A1BC670904C8C:FG=1; BIDUPSID=62D29763475FF8C6B138D5D8D88710E3; PSTM=1680753405; Hm_lvt_64ecd82404c51e03dc91cb9e8c025574=1694139138; REALTIME_TRANS_SWITCH=1; FANYI_WORD_SWITCH=1; HISTORY_SWITCH=1; SOUND_SPD_SWITCH=1; SOUND_PREFER_SWITCH=1; ZFY=QPcrF53sxH:A:AV6cv7mQEQ3OjZRlEOS4LYHTMGs:B:BqgY:C; H_PS_PSSID=36556_39109_38831_39114_39116_39039_38917_38829_26350_39138_39132_39137_39100; delPer=0; PSINO=7; BDRCVFR[Fc9oatPmwxn]=aeXf-1x8UdYcs; Hm_lpvt_64ecd82404c51e03dc91cb9e8c025574=1694689845; APPGUIDE_10_6_2=1; ab_sr=1.0.1_YjgwM2MyNWQwODI1NWVmZWM0NmU5MGU3NDQ4NzdjNDJkMWY1NmUyYjViOWY5NDk4ZTgyODQyOGQyMTc1N2U5OWE4YmI4Y2U5MmMzM2Q2Y2M3OGI1MDk5YjQwY2E2ZmVmYjkwNTdiNWE5ZWRmZWY5MjRmNTY5YTZjYzlmYzVmM2NmMWIwMDBjZmNhNjg3MTE1MjliYjYxOWM1NDgxYTM3YQ=='
+token = 'b0b9f11bbe2017c88df5ba89a8015f9c'
+global proxy_http
+proxy_http = ''
 
 
-class BaiduTranslate:
-    def __init__(self, auto):
-        """
-        auto: 指定是否需要自动获取cookie、token
-        """
-        self.proxy_http = self.query_proxy()
-        if auto:
-            self.cookie, self.token = self.get_token()
-        else:
-            self.cookie = 'BAIDUID=98EEF90A355645CA9AB89E1E3E0031CA:FG=1; BAIDUID_BFESS=98EEF90A355645CA9AB89E1E3E0031CA:FG=1; REALTIME_TRANS_SWITCH=1; FANYI_WORD_SWITCH=1; HISTORY_SWITCH=1; SOUND_SPD_SWITCH=1; SOUND_PREFER_SWITCH=1; Hm_lvt_64ecd82404c51e03dc91cb9e8c025574=1694569932; Hm_lpvt_64ecd82404c51e03dc91cb9e8c025574=1694569932; ab_sr=1.0.1_OGM1NjYzMTc3NTgyOGEwYmE2ODIyZDc3YjhjNzQwZjg5MDIyMTE3ZWM3N2E2ZTVlNzk0ZDFmYjRiMDVkZmY2NjJlOTUzYWJiNDE2YzAyZDNlMzNmZTUyNGI1MGE0YzI4OGFmOTc4OWM1OWQxMjM1YjIwOTJiNTAwMjMxMzFjOTRhZGZjMDUzNDc1MmFmNTk1MDhmNjJlMGE0ZmNhNDg2NA=='
-            self.token = '5feecf1da271b194f8ee16314e560c6a'
-        # print("初始化cookie、token成功")
-        # print(self.cookie)
-        # print(self.token)
+def translate(query, fro):
+    """
+    query: 需要翻译字符串
+    proxy: 代理
+    fro: 指定翻译语言
+    """
+    # 执行js生成翻译字符串sign值
+    context = execjs.compile(js_str)
+    result = context.call("getSign", query)
 
-    # 翻译字段方法
-    def translate(self, query, fro='en'):
-        """
-        query: 需要翻译字符串
-        proxy: 代理
-        fro: 指定翻译语言
-        """
-        # 执行js生成翻译字符串sign值
-        context = execjs.compile(js_str)
-        result = context.call("getSign", query)
+    url = 'https://fanyi.baidu.com/v2transapi?from=en&to=zh'
+    # cookie与请求体中token相关联
+    headers = {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'Cookie': cookie,
+    }
+    data = {
+        'from': fro,
+        'to': 'zh',
+        'query': query,
+        'transtype': 'realtime',
+        'simple_means_flag': '3',
+        'sign': result,
+        'token': token,
+        'domain': 'common',
+        'ts': int(time.time() * 1000),
+    }
 
-        url = 'https://fanyi.baidu.com/v2transapi?from=en&to=zh'
-        # cookie与请求体中token相关联
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.81',
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            'Cookie': self.cookie,
-        }
-        data = {
-            'from': fro,
-            'to': 'zh',
-            'query': query,
-            'transtype': 'realtime',
-            'simple_means_flag': '3',
-            'sign': result,
-            'token': self.token,
-            'domain': 'common',
-            'ts': int(time.time() * 1000),
-        }
-        proxy = {
-            'http': 'http://' + self.proxy_http,
-            'https': 'https://' + self.proxy_http,
-        }
-        response = requests.post(url, headers=headers, data=data).json()
-        data = ""
-        for k, d in enumerate(response["trans_result"]["data"]):
-            if d['dst'] and k == 0:
-                data += f"{d['dst']}"
-                continue
-            if d['dst']:
-                data += f"\n{d['dst']}"
+    proxy = {
+        'http': 'http://' + proxy_http,
+        # 'https': 'https://' + '103.207.1.82:8080'
+    }
+    response = requests.post(url, headers=headers, data=data, proxies=proxy).json()
+    data = ""
+    for k, d in enumerate(response["trans_result"]["data"]):
+        if d['dst'] and k == 0:
+            data += f"{d['dst']}"
+            continue
+        if d['dst']:
+            data += f"\n{d['dst']}"
+    try:
+        return {'error': 101, 'data': data}
+    except KeyError:
+        raise "ip失效"
+
+
+# 获取单个代理
+def query_proxy():
+    while True:
+        p = requests.get(url='http://192.168.90.12:5010/get/').json()['proxy']
+        if p:
+            global proxy_http
+            proxy_http = p
+            return
+
+
+# 自动检测语言
+def query_language(query):
+    url = 'https://fanyi.baidu.com/langdetect'
+    data = {
+        'query': query
+    }
+    return requests.post(url, data=data).json()['lan']
+
+
+def run(p):
+    # if not proxy_http:
+    #     query_proxy()
+    # 初始代理池
+    i = True
+    while i:
         try:
-            return {'error': 101, 'data': data}
-        except KeyError:
-            raise "ip失效"
+            # f = query_language(p)
+            a = translate(p, fro='en')
+        except Exception as e:
+            pass
+            # query_proxy()
+        else:
+            return a
 
-    # 获取单个代理
-    @staticmethod
-    def query_proxy():
-        i = 5
-        while i:
+
+def get_token():
+    c = ''
+    t = ''
+    # if not proxy_http:
+    #     query_proxy()
+    while True:
+        with sync_playwright() as p:
             try:
-                # p = requests.get(url='http://127.0.0.1:8888/success/get').json()['message']
-                p = requests.get(url='http://192.168.90.12:5010/get/').json()['proxy']
-                if p:
-                    return p
+                # 默认情况下开启无头模式，也就是不显示浏览器窗口
+                # browser = p.chromium.launch(headless=True, channel='msedge')
+                browser = p.firefox.launch(headless=True)
+                # browser = p.chromium.launch(headless=False, proxy={"server": proxy_http})
+                context = browser.new_context()
+                page = context.new_page()
+                page.set_default_timeout(10000)
+                page.goto('https://fanyi.baidu.com/#auth/zh/')
+                page.locator("#baidu_translate_input").fill("mange")
+                for i in context.cookies():
+                    c += f"{i['name']}={i['value']}; "
+                t = page.evaluate('window.common.token')
             except Exception as e:
-                print(f'获取代理失败，失败原因{e}')
-                i -= 1
-
-    # 自动检测语言
-    @staticmethod
-    def query_language(query):
-        url = 'https://fanyi.baidu.com/langdetect'
-        data = {
-            'query': query
-        }
-        return requests.post(url, data=data).json()['lan']
-
-    # 执行方法
-    def run(self, p):
-        """
-        p: 翻译字段
-        """
-        # if not self.proxy_http:
-        #     self.query_proxy()
-        # 初始代理池
-        i = 10
-        s_time = time.time()
-        while i:
-            try:
-                # 判断翻译字符串语种（暂时停用）
-                f = self.query_language(p)
-                a = self.translate(p, fro=f)
-            except Exception as e:
-                e = e
-                # self.proxy_http = self.query_proxy()
-                # i -= 1
+                pass
+                # query_proxy()
             else:
-                e_time = time.time()
-                h_time = e_time - s_time
-                if h_time > 2:
-                    self.proxy_http = self.query_proxy()
-                #     self.cookie, self.token = self.get_token()
-                a['consuming'] = h_time
-                return a
-
-    # 获取cookies以及token
-    @staticmethod
-    def get_token():
-        # 默认尝试获取5次
-        c = ''
-        t = ''
-        i = 1
-        while i < 6:
-            with sync_playwright() as p:
-                try:
-                    # 默认情况下开启无头模式，也就是不显示浏览器窗口
-                    # browser = p.chromium.launch(headless=True, channel='msedge')
-                    # browser = p.chromium.launch(headless=False, proxy={"server": proxy_http})
-                    browser = p.firefox.launch(headless=True)
-                    # browser = p.webkit.launch(headless=False)
-                    context = browser.new_context()
-                    page = context.new_page()
-                    page.goto('https://fanyi.baidu.com/#auth/zh/')
-                    page.locator("#baidu_translate_input").fill("mange")
-                    time.sleep(1)
-                    # 发送一次翻译请求,获取cookie
-                    for i in context.cookies():
-                        c += f"{i['name']}={i['value']}; "
-                    # js获取token
-                    t = page.evaluate('window.common.token')
-                except Exception as e:
-                    print(f"第{i}次获取cookie以及token失败，错误原因{e}")
-                    i += 1
-                else:
-                    return c[0:-2], t
+                return c[0:-2], t
 
 
 if __name__ == "__main__":
-    translate = BaiduTranslate(auto=False)
-    for i in range(2):
-        print(translate.run(p="TypeError: 'NoneType' object is not subscriptable"))
+    # 获取代理
+    # print(query_proxy())
+    # 获取cookie和token
+    # cookie, token = get_token()
+    # print(f"{cookie}", token)
+    # 测试翻译功能
+    for i in range(1):
+        s_time = time.time()
+        r = """Please upgrade to FortiOS version 7.4.0 or above
+Please upgrade to FortiOS version 7.2.4 or above
+Please upgrade to FortiOS version 7.0.11 or above
+Please upgrade to FortiOS version 6.4.12 or above
+Please upgrade to FortiOS version 6.2.14 or above
+Please upgrade to FortiProxy version 7.2.2 or above
+Please upgrade to FortiProxy version 7.0.8 or above
+ 
+Workaround:
+ 
+Disable "Host Check", "Restrict to Specific OS Versions" and "MAC address host checking" in sslvpn portal configuration. For example for "full-access" sslvpn portal:
+ 
+config vpn ssl web portal
+edit "full-access"
+set os-check disable
+set host-check none
+set mac-addr-check disable
+end"""
+        print(run(p=r)['data'])
+        e_time = time.time()
+        h_time = e_time - s_time
+        print(h_time)
+    import json
+    with open('../zip/deltaCves/CVE-2023-6093.json', 'r', encoding='utf-8') as f:
+        data = json.loads(f.read())
+        tt = data['containers']['cna']['workarounds'][0]['value']
+        print(run(p=tt))
+    # 执行js生成翻译字符串sign值
+    # context = execjs.compile(js_str)
+    # result = context.call("getSign", "Cross-Site Request Forgery (CSRF) vulnerability in QuantumCloud ChatBot 🚀 plugin <=\xa04.2.8 versions.")
+    # print(result)

@@ -1,7 +1,7 @@
 from app import create_app
-from task_tool.apscheduler_task import scheduler
-from proxy_tool.check_proxy.check_proxy import rds
-from proxy_tool.app.config import BaseConfig
+from app.task_tool.apscheduler_task import scheduler
+from app.check_proxy.check_proxy import rds
+from app.config import BaseConfig
 import signal
 import sys
 
